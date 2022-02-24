@@ -25,10 +25,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
                 <div class="col-sm-4 col-xs-6 header-left">
-                    <div class="shipping">
-                        <div class="shipping-img"></div>
-                        <div class="shipping-text">Free Shipping <span class="shipping-detail">Free on all products</span></div>
-                    </div>
+                    
 
                 </div>
                
