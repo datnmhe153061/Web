@@ -90,16 +90,14 @@
         </nav>
         <!-- Header-->
         <header class="header">
-            <div class="row">
-                <div class="banner col-md-12">
+            <div class="row row-first">
+                <div class="col-md-12">
                     <div id="main-banner" class="owl-carousel home-slider">
-                        <div class="item"> <a href="#"><img src="image/banners/Main-Banner1.jpg" alt="main-banner1" class="img-responsive" /></a> </div>
-                        <div class="item"> <a href="#"><img src="image/banners/Main-Banner2.jpg" alt="main-banner2" class="img-responsive" /></a> </div>
-                        <div class="item"> <a href="#"><img src="image/banners/Main-Banner3.jpg" alt="main-banner3" class="img-responsive" /></a> </div>
-                    </div>
+                        <div class="item"> <a href="#"><img name="imgch" onclick="changeImage()" src="image/banners/Main-Banner1.jpg" alt="main-banner1" class="img-responsive" /></a> </div>
+                    </div>   
                 </div>
             </div>
-            <div class="row">
+            <div class="row row-second">
                 <div class="cms_banner">
                     <div class="col-md-4 cms-banner-left"> <a href="#"><img alt="#" src="image/banners/subbanner1.jpg"></a> </div>
                     <div class="col-md-4 cms-banner-middle"> <a href="#"><img alt="#" src="image/banners/subbanner2.jpg"></a> </div>
@@ -107,10 +105,62 @@
                 </div>
             </div>
         </header>
+        <script>
+            var index = 1;
+            changeImage = function () {
+                var imgs = ["image/banners/Main-Banner1.jpg", "image/banners/Main-Banner2.jpg", "image/banners/Main-Banner3.jpg"];
+                document.images['imgch'].src = imgs[index];
+                index++;
+                if (index == 3) {
+                    index = 0;
+                }
+            }
+            setInterval(changeImage, 5000);
+        </script>
         <!-- Section-->
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
-                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                <div id="column-left" class="row">
+                    <div class="col-md-3">
+                        <div class="column-block">
+                            <div class="columnblock-title">Categories</div>
+                            <div class="category_block">
+                                <ul class="box-category treeview-list treeview">
+                                    <li><a href="#" class="activSub">Desktops</a>
+                                        <ul>
+                                            <li><a href="#">PC</a></li>
+                                            <li><a href="#">MAC</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#" class="activSub">Laptops &amp; Notebooks</a>
+                                        <ul>
+                                            <li><a href="#">Macs</a></li>
+                                            <li><a href="#">Windows</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#" class="activSub">Components</a>
+                                        <ul>
+                                            <li><a href="#">Mice and Trackballs</a></li>
+                                            <li><a href="#" class="activSub" >Monitors</a>
+                                                <ul>
+                                                    <li><a href="#"  >test 1</a></li>
+                                                    <li><a href="#"  >test 2</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="#">Windows</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Tablets</a></li>
+                                    <li><a href="#">Software</a></li>
+                                    <li><a href="#">Phones & PDAs</a></li>
+                                    <li><a href="#">Cameras</a></li>
+                                    <li><a href="#">MP3 Players</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Product image-->
@@ -305,6 +355,8 @@
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
                             </div>
+                        </div>
+                    </div>
                         </div>
                     </div>
                 </div>
