@@ -1,0 +1,160 @@
+footer {
+	margin-top: 35px;
+	padding: 30px 0;
+	background-color: #23282a;
+	color: #aaabab;
+}
+.footer-bottom {
+	background: #0e1011;
+	padding: 15px 0;
+	color: #aaabab;
+}
+.footer-bottom a {
+	float: left;
+	clear: both;
+}
+footer hr {
+	border-top: none;
+	border-bottom: 1px solid #666;
+}
+footer, footer a, .footer-bottom a {
+	color: #aaabab;
+}
+.footer-bottom a {
+	float: right;
+	margin-left: 10px;
+}
+footer a:hover {
+	color: #f5f5f5;
+}
+footer h5 {
+	font-family: 'Arimo', sans-serif;
+	font-size: 13px;
+	color: #fff;
+	text-transform: uppercase;
+}
+footer ul {
+	margin: 15px 0 0;
+	padding: 0;
+}
+footer ul li {
+	padding: 1px 0;
+}
+.footer-top-cms {
+	display: inline-block;
+	width: 100%;
+	color: #aaabab;
+	border-bottom: 1px solid #4f5355;
+	padding: 0 0 20px;
+	margin: 0 0 30px;
+}
+.footer-logo {
+	float: left;
+}
+.footer-desc {
+	width: 710px;
+	display: inline-block;
+	margin: 0 0 0 50px;
+}
+.footer-social {
+	float: right;
+}
+.footer-social h5 {
+	margin: 0 0 10px;
+}
+.footer-social ul {
+	padding: 0;
+	margin: 0;
+}
+.footer-social li {
+	float: left;
+	list-style-type: none;
+	margin: 0 10px 0 0;
+}
+.footer-social li a {
+	border: 1px solid #4f5355;
+	height: 30px;
+	width: 30px;
+	display: block;
+	text-align: center;
+	line-height: 28px;
+	color: #aaabab;
+}
+.footer-social li a:hover {
+	border: 1px solid #fff;
+	color: #fff;
+}
+/* CSS for Footer-Top CMS end */
+
+/* CSS for Footer-Top CMS start */
+.footer-bottom-cms {
+	float: right;
+	width: auto;
+	margin: 6px 0 0;
+}
+.footer-bottom .copyright {
+	float: left;
+}
+/* CSS for Footer-Top CMS end */
+
+/* CSS for Footer-Bottom CMS start */
+
+.footer-payment ul {
+	margin: 0;
+	padding: 0;
+}
+.footer-payment li {
+	float: left;
+	margin: 0 5px 0 0;
+	list-style-type: none;
+}
+.footer-payment li:last-child {
+	margin: 0;
+}
+/* CSS for Footer-Bottom CMS end */
+
+/* CSS for Footer-Right CMS start */
+.footer-contact ul {
+	margin: 0;
+	padding: 0;
+}
+.footer-contact ul li {
+	list-style-type: none;
+	padding: 0
+}
+.footer-contact .fa {
+	margin: 0 5px 0 0;
+	float: left;
+	clear: both;
+	line-height: 20px;
+	width: 15px;
+}
+.footer-contact .fa.fa-mobile {
+	font-size: 18px;
+}
+.footer-contact span {
+	float: left;
+}
+
+.icon-fot {
+    text-align: center;
+}
+
+.icon-fot i {
+    font-size: 41px;
+    line-height: 1.4;
+    color: rgb(255, 81, 0);
+}
+
+#scrollup {
+	background: url("../image/scroll.png") no-repeat;
+	width: 33px;
+	height: 33px;
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	display: none;
+	text-indent: -9999px;
+	cursor: pointer;
+	z-index: 9999;
+}
