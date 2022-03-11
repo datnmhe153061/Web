@@ -63,7 +63,7 @@ public class SearchServlet extends HttpServlet {
         request.setAttribute("tag", index);
         request.setAttribute("txt", textSearch);
         request.setAttribute("listcategory", listcategory);
-        request.getRequestDispatcher("product.jsp").forward(request, response);
+        request.getRequestDispatcher("search.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

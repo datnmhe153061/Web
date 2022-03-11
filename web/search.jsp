@@ -1,6 +1,6 @@
 <%-- 
-    Document   : product
-    Created on : Feb 24, 2022, 11:28:28 AM
+    Document   : search
+    Created on : Mar 10, 2022, 9:15:53 AM
     Author     : Laptop88
 --%>
 
@@ -84,14 +84,14 @@
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination">
                                     <c:if test="${tag > 1}">
-                                        <li class="page-item"><a class="page-link" href="ProductServlet?index=${tag-1}">Previous</a></li>  
+                                        <li class="page-item"><a class="page-link" href="SearchServlet?index=${tag-1}">Previous</a></li>  
                                     </c:if>
                                     
                                     <c:forEach begin="1" end="${page}" var="i">
-                                        <li class="page-item ${tag==i?"active":""}"><a class="page-link" href="ProductServlet?index=${i}">${i}</a></li>
+                                        <li class="page-item ${tag==i?"active":""}"><a class="page-link" href="SearchServlet?index=${i}">${i}</a></li>
                                     </c:forEach>
                                     <c:if test="${tag < page}">
-                                        <li class="page-item"><a class="page-link" href="ProductServlet?index=${tag+1}">Next</a></li>
+                                        <li class="page-item"><a class="page-link" href="SearchServlet?index=${tag+1}">Next</a></li>
                                     </c:if>
                                 </ul>
                               </nav>
