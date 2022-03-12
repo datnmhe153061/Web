@@ -20,7 +20,7 @@
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="css/styles.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap.min.css" rel="stylesheet" />
     </head>
     <body>
@@ -38,13 +38,16 @@
                                     <c:forEach items="${listcategory}" var="s" varStatus="loop">
                                         <li class="">
                                             <i class="fa-solid fa-plus"></i>
-                                            <a href="filter-category?categoryId=${s.id}" style="color: black; text-decoration: none">${s.name}</a>
-                                            <span class="badge bg-secondary text-white ms-1 rounded-pill" style="background-color: #0a53be">${listproduct.size()}</span>
+                                            <a class="${s.id==cid?"active":""}" href="filter-category?categoryId=${s.id}">${s.name}</a>
+                                            <span class="badge bg-secondary text-white ms-1 rounded-pill" style="background-color: #0a53be">${s.size}</span>
                                         </li>
                                     </c:forEach>
                                 </ul>
                             </div>
                         </div>
+                            <div>
+                                
+                            </div>
                     </div>
                     <div class="col-md-9">
                         <div class="row row-second">

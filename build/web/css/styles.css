@@ -11562,3 +11562,11 @@ textarea.form-control-lg {
     padding-top: 4px;
     color: black;
 }
+.category_block .list-group a{
+    color: black;
+    text-decoration: none;
+}
+.category_block .list-group a.active{
+    color: orange;
+    font-weight: bold;
+}

@@ -23,5 +23,5 @@ public class Category {
     private int parentid;
     private Date date;
     private boolean status;
-    
+    private int size;
 }

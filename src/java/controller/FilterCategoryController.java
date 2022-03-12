@@ -58,6 +58,10 @@ public class FilterCategoryController extends HttpServlet {
                 
             }
         }
+        for (int i = 0; i < 6; i++) {
+            ArrayList<Product> listsize = new ProductDAO().getProductByCategoryId(i+1);
+            listcategory.get(i).setSize(listsize.size());
+        }
         request.setAttribute("listproduct", listproduct.subList((index-1)*8, indax));
         request.setAttribute("page", page);
         request.setAttribute("tag", index);
