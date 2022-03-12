@@ -38,9 +38,32 @@ public class FilterCategoryController extends HttpServlet {
         int categoryid = Integer.parseInt(request.getParameter("categoryId"));
         ArrayList<Category> listcategory = new CategoryDAO().getAll();
         ArrayList<Product> listproduct = new ProductDAO().getProductByCategoryId(categoryid);
-        request.setAttribute("listproduct", listproduct);
+        String indexPage = request.getParameter("index");
+        if(indexPage == null){
+            indexPage = "1";
+        }
+        int index = Integer.parseInt(indexPage);
+        
+        int count = listproduct.size();
+        int page = count/8;
+        if(count % 8 != 0){
+            page++;
+        }
+        int indax = index*8;
+        if(index*8 > listproduct.size()){
+            indax = listproduct.size();
+        }
+        for (Product p : listproduct) {
+            if(p.getListproduct_id() == 1){
+                
+            }
+        }
+        request.setAttribute("listproduct", listproduct.subList((index-1)*8, indax));
+        request.setAttribute("page", page);
+        request.setAttribute("tag", index);
         request.setAttribute("listcategory", listcategory);
-        request.getRequestDispatcher("product.jsp").forward(request, response);
+        request.setAttribute("cid", categoryid);
+        request.getRequestDispatcher("listofoneproduct.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

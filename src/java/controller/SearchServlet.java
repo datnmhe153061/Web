@@ -63,6 +63,9 @@ public class SearchServlet extends HttpServlet {
         request.setAttribute("tag", index);
         request.setAttribute("txt", textSearch);
         request.setAttribute("listcategory", listcategory);
+        response.getWriter().print("<h1>"+indexPage+"</h1>");
+        response.getWriter().print("<h1>"+textSearch+"</h1>");
+        response.getWriter().print("<h1>"+page+"</h1>");
         request.getRequestDispatcher("search.jsp").forward(request, response);
     }
 
@@ -78,7 +81,7 @@ public class SearchServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+            processRequest(request, response);
     }
 
     /**

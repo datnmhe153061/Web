@@ -53,6 +53,11 @@ public class ProductServlet extends HttpServlet {
         if(index*8 > listproduct.size()){
             indax = listproduct.size();
         }
+        for (Product p : listproduct) {
+            if(p.getListproduct_id() == 1){
+                
+            }
+        }
         request.setAttribute("listproduct", listproduct.subList((index-1)*8, indax));
         request.setAttribute("page", page);
         request.setAttribute("tag", index);

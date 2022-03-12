@@ -5,6 +5,7 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,22 +32,33 @@
                     <div id="column-left" class="row">
                         <div class="col-md-3">
                             <div class="column-block">
-                                <div class="columnblock-title">Categories</div>
-                                <div class="category_block">
+                                <div class="columnblock-title"><h1>Categories</h1></div>
+                                <div class="category_block" style="background-color: white">
                                     <ul class="list-group">
                                     <c:forEach items="${listcategory}" var="s" varStatus="loop">
-                                        <li class="list-group-item"><a href="filter-category?categoryId=${s.id}">${s.name}</a></li>
-                                        </c:forEach>
+                                        <li class="${s.id == cid ? "active":""}">
+                                            <i class="fa-solid fa-plus"></i>
+                                            <a href="filter-category?categoryId=${s.id}" style="color: black; text-decoration: none">${s.name}</a>
+                                            <span class="badge bg-secondary text-white ms-1 rounded-pill" style="background-color: #0a53be">${listproduct.size()}</span>
+                                        </li>
+                                    </c:forEach>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-9">
-                        <div>List Product</div>
+                        <div class="row row-second">
+                            <div class="cms_banner">
+                                <div class="col-md-4 cms-banner-left"> <a href="#"><img alt="#" src="image/banners/sub-banner4.jpg"></a> </div>
+                                <div class="col-md-4 cms-banner-middle"> <a href="#"><img alt="#" src="image/banners/sub-banner5.jpg"></a> </div>
+                                <div class="col-md-4 cms-banner-right"> <a href="#"><img alt="#" src="image/banners/sub-banner6.jpg"></a> </div>
+                            </div>
+                        </div>
+                        <div><h1>List Product</h1></div>
                         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                        <c:if test="${nofound != null}">
-                            <h3>${nofound}</h3>
-                        </c:if>
+                            <c:if test="${nofound != null}">
+                                <h3>${nofound}</h3>
+                            </c:if>
                             <c:forEach items="${listproduct}" var="p" varStatus="loop">
                                 <div class="col mb-5">
                                     <div class="card h-100">
@@ -68,8 +80,8 @@
                                                     <div class="bi-star-fill"></div>
                                                 </div>
                                                 <!-- Product price-->
-                                                <span class="text-muted text-decoration-line-through">${p.promotionprice}</span>
-                                                ${p.price}
+                                                <span class="text-muted text-decoration-line-through"><fmt:formatNumber value="${p.promotionprice}" type="currency"/></span>
+                                                <span class="fw-bold fs-5" style="color: red;"><fmt:formatNumber value="${p.price}" type="currency"/></span>
                                             </div>
                                         </div>
                                         <!-- Product actions-->
@@ -85,16 +97,16 @@
                                 <ul class="pagination">
                                     <c:if test="${tag > 1}">
                                         <li class="page-item"><a class="page-link" href="ProductServlet?index=${tag-1}">Previous</a></li>  
-                                    </c:if>
-                                    
+                                        </c:if>
+
                                     <c:forEach begin="1" end="${page}" var="i">
                                         <li class="page-item ${tag==i?"active":""}"><a class="page-link" href="ProductServlet?index=${i}">${i}</a></li>
-                                    </c:forEach>
-                                    <c:if test="${tag < page}">
+                                        </c:forEach>
+                                        <c:if test="${tag < page}">
                                         <li class="page-item"><a class="page-link" href="ProductServlet?index=${tag+1}">Next</a></li>
-                                    </c:if>
+                                        </c:if>
                                 </ul>
-                              </nav>
+                            </nav>
                         </div>
                     </div>
                 </div>

@@ -31,22 +31,22 @@
                 <div class="row row-first">
                     <div class="col-md-12">
                         <div id="main-banner" class="owl-carousel home-slider">
-                            <div class="item"> <a href="#"><img name="imgch" onclick="changeImage()" src="image/banners/Main-Banner1.jpg" alt="main-banner1" class="img-responsive" /></a> </div>
+                            <div class="item"> <a href="#"><img name="imgch" onclick="changeImage()" src="image/banners/MainBanner1.jpg" alt="main-banner1" class="img-responsive" /></a> </div>
                         </div>   
                     </div>
                 </div>
                 <div class="row row-second">
                     <div class="cms_banner">
-                        <div class="col-md-4 cms-banner-left"> <a href="#"><img alt="#" src="image/banners/subbanner1.jpg"></a> </div>
-                        <div class="col-md-4 cms-banner-middle"> <a href="#"><img alt="#" src="image/banners/subbanner2.jpg"></a> </div>
-                        <div class="col-md-4 cms-banner-right"> <a href="#"><img alt="#" src="image/banners/subbanner3.jpg"></a> </div>
+                        <div class="col-md-4 cms-banner-left"> <a href="#"><img alt="#" src="image/banners/sub-banner1.jpg"></a> </div>
+                        <div class="col-md-4 cms-banner-middle"> <a href="#"><img alt="#" src="image/banners/sub-banner2.jpg"></a> </div>
+                        <div class="col-md-4 cms-banner-right"> <a href="#"><img alt="#" src="image/banners/sub-banner3.jpg"></a> </div>
                     </div>
                 </div>
             </header>
             <script>
                 var index = 1;
                 changeImage = function () {
-                    var imgs = ["image/banners/Main-Banner1.jpg", "image/banners/Main-Banner2.jpg", "image/banners/Main-Banner3.jpg"];
+                    var imgs = ["image/banners/MainBanner1.jpg", "image/banners/MainBanner2.jpg", "image/banners/MainBanner3.jpg"];
                     document.images['imgch'].src = imgs[index];
                     index++;
                     if (index == 3) {
