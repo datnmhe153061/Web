@@ -63,6 +63,7 @@ public class FilterCategoryController extends HttpServlet {
             listcategory.get(i).setSize(listsize.size());
         }
         request.setAttribute("listproduct", listproduct.subList((index-1)*8, indax));
+        request.setAttribute("newproduct", listproduct);
         request.setAttribute("page", page);
         request.setAttribute("tag", index);
         request.setAttribute("listcategory", listcategory);

@@ -45,9 +45,23 @@
                                 </ul>
                             </div>
                         </div>
-                            <div>
-                                
-                            </div>
+                        <div class="category_block">
+                            <h4 class="text-danger text-uppercase">Sản Phẩm Mới</h4>
+                            <c:forEach  begin="3" end="8" var="new" items="${newproduct}">
+                                <div class="row mb-2 border border-1 bg-white">
+                                    <div class="col-md-5">
+                                        <img class="card-img-top" src="${new.image}" alt="..." />
+                                    </div>
+                                    <div class="col-md-7">
+                                        <h6>${new.name}</h6>
+                                        <span class="fst-italic text-muted text-decoration-line-through"><fmt:formatNumber value="${new.promotionprice}" type="currency"/></span>
+                                        <br>
+                                        <span class="fs-6" style="color: red;"><fmt:formatNumber value="${new.price}" type="currency"/></span>
+                                    </div>
+                                </div>
+                            </c:forEach>
+
+                        </div>
                     </div>
                     <div class="col-md-9">
                         <div class="row row-second">
@@ -57,7 +71,39 @@
                                 <div class="col-md-4 cms-banner-right"> <a href="#"><img alt="#" src="image/banners/sub-banner6.jpg"></a> </div>
                             </div>
                         </div>
-                        <div><h1>List Product</h1></div>
+                        <div class="row">
+                            <div class="col-md-6"><h1>Danh sách sản phẩm</h1></div>
+                                <div class="col-md-2">
+                                    <select class="form-select" aria-label="Default select example" >
+                                        <option selected>Thương hiệu</option>
+                                        <option value="1">Việt Nam</option>
+                                        <option value="2">Trung Quốc</option>
+                                        <option value="3">Thái Lan</option>
+                                        <option value="4">Mỹ</option>
+                                        <option value="5">Úc</option>
+                                        <option value="6">Nhật Bản</option>
+                                        <option value="7">Hàn Quốc</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <select class="form-select" aria-label="Default select example">
+                                        <option selected>Khoảng giá</option>
+                                        <option value="1">Dưới 5 triệu</option>
+                                        <option value="2">5 - 10 triệu</option>
+                                        <option value="3">10 - 20 triệu</option>
+                                        <option value="4">Trên 20 triệu</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <select class="form-select" aria-label="Default select example">
+                                        <option selected>Sắp Xếp</option>
+                                        <option value="1">Tên: A đến Z</option>
+                                        <option value="2">Tên: Z đến A</option>
+                                        <option value="3">Giá tăng dần</option>
+                                        <option value="4">Giá giảm dần</option>
+                                    </select>
+                                </div>
+                        </div>
                         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                             <c:if test="${nofound != null}">
                                 <h3>${nofound}</h3>
@@ -66,7 +112,7 @@
                                 <div class="col mb-5">
                                     <div class="card h-100">
                                         <!-- Sale badge-->
-                                        <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+                                        <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">-<fmt:formatNumber type="number" maxFractionDigits="0" value="${100-(p.promotionprice/p.price*100)}" />%</div>
                                         <!-- Product image-->
                                         <img class="card-img-top" src="${p.image}" alt="..." />
                                         <!-- Product details-->
@@ -89,7 +135,7 @@
                                         </div>
                                         <!-- Product actions-->
                                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
+                                            <div class="text-center "><a class="btn btn-outline-dark mt-auto" href="#"><i class="fa-solid fa-cart-plus"></i>Thêm vào giỏ hàng</a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -121,5 +167,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+
+        <script src="js/SmoothScroll.min.js"></script>
     </body>
 </html>
