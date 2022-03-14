@@ -65,7 +65,7 @@
                         <c:forEach items="${listcategory}" var="c" varStatus="loop">
                             <div class="heading mb-2 mt-5" >
                                 <h2 class="normal-title"><a href="#">${c.name}</a></h2>
-                                <a class="normal-title-right view-all hidden-xs" href="#">Xem thêm <i class="fa fa-long-arrow-right"></i></a>
+                                <a class="normal-title-right view-all hidden-xs" href="filter-category?categoryId=${c.id}">Xem thêm <i class="fa fa-long-arrow-right"></i></a>
                             </div>
                             <div class="row row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                                 <c:forEach items="${listproduct}" var="p" varStatus="loop">
@@ -74,7 +74,7 @@
                                             <div class="col mb-0" style="padding: 0px 0px">
                                                 <div class="card h-100">
                                                     <!-- Sale badge-->
-                                                    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+                                                    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">-<fmt:formatNumber type="number" maxFractionDigits="0" value="${100-(p.promotionprice/p.price*100)}" />%</div>
                                                     <!-- Product image-->
                                                     <img class="card-img-top" src="${p.image}" alt="..." />
                                                     <!-- Product details-->
@@ -92,12 +92,16 @@
                                                             </div>
                                                             <!-- Product price-->
                                                             <span class="text-muted text-decoration-line-through"><fmt:formatNumber value="${p.promotionprice}" type="currency"/></span>
+                                                            <br>
                                                             <span class="fw-bold fs-5" style="color: red;"><fmt:formatNumber value="${p.price}" type="currency"/></span>
                                                         </div>
                                                     </div>
+                                                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                                        <div class="text-center"><a class="btn btn-outline-info mt-auto bg-info text-white" href="#" style="font-size: 12px">Xem Sản Phẩm</a></div>
+                                                    </div>
                                                     <!-- Product actions-->
                                                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#"><i class="bi-cart-fill me-1"></i>Add to cart</a></div>
+                                                        <div class="text-center"><a class="btn btn-outline-info mt-auto" href="AddToCartServlet?productId=${p.id}" style="font-size: 12px"><i class="fa-solid fa-cart-plus"></i><br>Thêm vào giỏ hàng</a></div>
                                                     </div>
                                                 </div>
                                             </div>

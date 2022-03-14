@@ -18,7 +18,7 @@ import model.Product;
  *
  * @author Laptop88
  */
-public class ProductDAO extends BaseDAO<Product>{
+public class ProductDAO extends BaseDAO<Product> {
 
     public ArrayList<Product> getAllProduct() {
         ArrayList<Product> list = new ArrayList<>();
@@ -26,8 +26,8 @@ public class ProductDAO extends BaseDAO<Product>{
             String sql = "SELECT * FROM Product";
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
-            while(rs.next()){
-                Product p =  Product.builder().build();
+            while (rs.next()) {
+                Product p = Product.builder().build();
                 p.setId(rs.getInt("Id"));
                 p.setName(rs.getString("Name"));
                 p.setPrice(rs.getInt("Price"));
@@ -52,8 +52,8 @@ public class ProductDAO extends BaseDAO<Product>{
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, categoryId);
             ResultSet rs = statement.executeQuery();
-            while(rs.next()){
-                Product p =  Product.builder().build();
+            while (rs.next()) {
+                Product p = Product.builder().build();
                 p.setId(rs.getInt("Id"));
                 p.setName(rs.getString("Name"));
                 p.setPrice(rs.getInt("Price"));
@@ -76,7 +76,7 @@ public class ProductDAO extends BaseDAO<Product>{
             String sql = "SELECT COUNT(*) FROM Product";
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 return rs.getInt(1);
             }
         } catch (SQLException ex) {
@@ -90,10 +90,10 @@ public class ProductDAO extends BaseDAO<Product>{
         try {
             String sql = "SELECT * FROM Product WHERE [Name] LIKE ?";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, "%"+textSearch+"%");
+            statement.setString(1, "%" + textSearch + "%");
             ResultSet rs = statement.executeQuery();
-            while(rs.next()){
-                Product p =  Product.builder().build();
+            while (rs.next()) {
+                Product p = Product.builder().build();
                 p.setId(rs.getInt("Id"));
                 p.setName(rs.getString("Name"));
                 p.setPrice(rs.getInt("Price"));
@@ -111,6 +111,29 @@ public class ProductDAO extends BaseDAO<Product>{
         return list;
     }
 
-    
-    
+    public Product getProductByProductId(int productId) {
+        try {
+            String sql = "SELECT * FROM Product WHERE Id = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, productId);
+            ResultSet rs = statement.executeQuery();
+            Product p = Product.builder().build();
+            while (rs.next()) {
+                p.setId(rs.getInt("Id"));
+                p.setName(rs.getString("Name"));
+                p.setPrice(rs.getInt("Price"));
+                p.setPromotionprice(rs.getInt("Promotionalprice"));
+                p.setDescription(rs.getString("Description"));
+                p.setQuantity(rs.getInt("Quantity"));
+                p.setListproduct_id(rs.getInt("Listproduct_id"));
+                p.setBrand(rs.getString("Brand"));
+                p.setImage(rs.getString("Image"));
+                return p;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
 }

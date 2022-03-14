@@ -19,7 +19,7 @@
         </div>
         <div class="col-sm-4 col-xs-6 mb-2 header-middle">
             <div class="header-middle-top">
-                <div id="logo"> <a href="#"><img src="image/product/logo.png" title="E-Commerce" alt="E-Commerce" class="img-responsive" /></a> </div>
+                <div id="logo"> <a href="HomeController"><img src="image/product/logo.png" title="E-Commerce" alt="E-Commerce" class="img-responsive" /></a> </div>
             </div>
 
         </div>
@@ -36,13 +36,13 @@
                 </div>
             </div>
             <div>
-                <form class="d-flex mt-2" style="box-shadow: 1px 1px 1px 1px tomato; border-radius: 5px">
-                    <button class="btn float-none " type="submit">
+                <div class="d-flex mt-2" style="box-shadow: 1px 1px 1px 1px tomato; border-radius: 5px">
+                    <a class="btn float-none " href="carts">
                         <i class="bi-cart-fill me-1"></i>
                         Cart
-                        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                    </button>
-                </form>
+                        <span class="badge bg-dark text-white ms-1 rounded-pill">${sessionScope.carts.size()}</span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -52,7 +52,7 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="HomeController">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="#!">Page</a></li>
                 <li class="nav-item"><a class="nav-link" href="#!">About Us</a></li>
                 <li class="nav-item"><a class="nav-link" href="#!">Contact Us</a></li>

@@ -68,6 +68,7 @@ public class FilterCategoryController extends HttpServlet {
         request.setAttribute("tag", index);
         request.setAttribute("listcategory", listcategory);
         request.setAttribute("cid", categoryid);
+        request.getSession().setAttribute("UrlHistory", "filter-category?categoryId="+categoryid);
         request.getRequestDispatcher("listofoneproduct.jsp").forward(request, response);
     }
 

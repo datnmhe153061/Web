@@ -5,23 +5,19 @@
  */
 package controller;
 
-import dao.CategoryDAO;
 import dao.ProductDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Category;
 import model.Product;
 
 /**
  *
  * @author Laptop88
  */
-public class HomeController extends HttpServlet {
+public class ViewProductServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,13 +31,13 @@ public class HomeController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        ArrayList<Category> listcategory = new CategoryDAO().getAll();
-        ArrayList<Product> listproduct = new ProductDAO().getAllProduct();
-        
-        request.setAttribute("listcategory", listcategory);
-        request.setAttribute("listproduct", listproduct);
-        request.getSession().setAttribute("UrlHistory", "HomeController");
-        request.getRequestDispatcher("home.jsp").forward(request, response);
+        String product_id = request.getParameter("productId");
+        int productid = Integer.parseInt(product_id);
+        Product getproduct = new ProductDAO().getProductByProductId(productid);
+        request.setAttribute("getproduct", getproduct);
+        response.getWriter().print("<h1>"+getproduct.getName()+"</h1>");
+        request.getSession().setAttribute("UrlHistory", "ViewProductServlet?productId="+productid);
+        request.getRequestDispatcher("viewproduct.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

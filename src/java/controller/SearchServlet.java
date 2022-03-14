@@ -36,7 +36,9 @@ public class SearchServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         String textSearch = request.getParameter("textsearch");
+        
         ArrayList<Category> listcategory = new CategoryDAO().getAll();
         ArrayList<Product> listproduct = new ProductDAO().searchProductByName(textSearch);
         
@@ -58,7 +60,12 @@ public class SearchServlet extends HttpServlet {
         if(count == 0){
             request.setAttribute("nofound" ,"Không tìm thấy kết quả nào");
         }
+        for (int i = 0; i < 6; i++) {
+            ArrayList<Product> listsize = new ProductDAO().getProductByCategoryId(i+1);
+            listcategory.get(i).setSize(listsize.size());
+        }
         request.setAttribute("listproduct", listproduct.subList((index-1)*8, indax));
+        request.setAttribute("newproduct", listproduct);
         request.setAttribute("page", page);
         request.setAttribute("tag", index);
         request.setAttribute("txt", textSearch);
@@ -66,6 +73,7 @@ public class SearchServlet extends HttpServlet {
         response.getWriter().print("<h1>"+indexPage+"</h1>");
         response.getWriter().print("<h1>"+textSearch+"</h1>");
         response.getWriter().print("<h1>"+page+"</h1>");
+        request.getSession().setAttribute("UrlHistory", "ProductServlet");
         request.getRequestDispatcher("search.jsp").forward(request, response);
     }
 

@@ -5,23 +5,22 @@
  */
 package controller;
 
-import dao.CategoryDAO;
-import dao.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Category;
-import model.Product;
+import javax.servlet.http.HttpSession;
+import model.Cart;
 
 /**
  *
  * @author Laptop88
  */
-public class HomeController extends HttpServlet {
+public class UpdateQuantityCart extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,13 +34,22 @@ public class HomeController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        ArrayList<Category> listcategory = new CategoryDAO().getAll();
-        ArrayList<Product> listproduct = new ProductDAO().getAllProduct();
-        
-        request.setAttribute("listcategory", listcategory);
-        request.setAttribute("listproduct", listproduct);
-        request.getSession().setAttribute("UrlHistory", "HomeController");
-        request.getRequestDispatcher("home.jsp").forward(request, response);
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            int productid = Integer.parseInt(request.getParameter("productId"));
+            int quantity = Integer.parseInt(request.getParameter("quantity"));
+            
+            HttpSession session = request.getSession();
+            Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
+            if(carts == null){
+                carts = new LinkedHashMap<>();
+            }
+            if(carts.containsKey(productid)){
+                carts.get(productid).setQuantity(quantity);
+            }
+            session.setAttribute("carts", carts);
+            response.sendRedirect("carts");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
