@@ -34,23 +34,19 @@
                                     <th scope="col">Price</th>
                                     <th scope="col">Quantity</th>
                                     <th scope="col">Total Price</th>
-                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                             <c:forEach var="c" items="${carts}">
-                            <form action="update-quantity">
                                 <tr>
                                 <input type="hidden" name="productId" value="${c.value.product.id}" />
                                 <th scope="row">${c.value.product.id}</th>
                                 <td><img src="${c.value.product.image}" width="100"/></td>
                                 <td>${c.value.product.name}</td>
                                 <td>${c.value.product.promotionprice}</td>
-                                <td><input onchange="this.form.submit()" type="number" name="quantity" value="${c.value.quantity}"/></td>
+                                <td>${c.value.quantity}</td>
                                 <td>${c.value.product.promotionprice*c.value.quantity}</td>
-                                <td><a href="delete-cart?productId=${c.value.product.id}" class="btn btn-outline-danger"><i class="fa-solid fa-trash-can"></i> Delete</a></td>
                                 </tr>
-                            </form>
                         </c:forEach>
                         </tbody>
                     </table>
@@ -58,19 +54,22 @@
                 </div>
                 <div class="col-md-4" style="border: 1px solid #ccc; border-radius: 5px; padding: 1rem">
                     <h3>Information</h3>
-                    <form>
+                    <form action="checkout" method="post">
                         <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
+                            <label for="phone" class="form-label">Phone</label>
+                            <input type="text" class="form-control" id="phone" name="phone" aria-describedby="emailHelp">
                         </div>
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Address</label>
+                            <input type="text" class="form-control" id="address" name="address" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="note" class="form-label">Name</label>
+                            <textarea class="form-control" id="note" name="note" rows="3"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary w-100">Submit</button>
                     </form>

@@ -4,6 +4,7 @@
     Author     : Laptop88
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <link href="css/styles.css" rel="stylesheet" />
 <link href="css/bootstrap.min.css" rel="stylesheet" />
@@ -27,11 +28,23 @@
             <div class="top-right pull-right" style="box-shadow: 1px 1px 1px 1px tomato; border-radius: 5px">
                 <div id="top-links" class="nav pull-right">
                     <div class="dropdown">
-                        <a class="nav-link dropdown-toggle" style="color: black" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">My Account</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Register</a></li>
-                            <li><a class="dropdown-item" href="#">Login</a></li>
-                        </ul>
+                        <c:choose>
+                            <c:when test="${sessionScope.account!=null}">
+                                <a class="nav-link dropdown-toggle" style="color: black" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">${sessionScope.account.name}</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#">Register</a></li>
+                                    <li><a class="dropdown-item" href="#">Login</a></li>
+                                </ul>
+                            </c:when>
+                            <c:otherwise>
+                                <a class="nav-link dropdown-toggle" style="color: black" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">My Account</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#">Register</a></li>
+                                    <li><a class="dropdown-item" href="#">Login</a></li>
+                                </ul>
+                            </c:otherwise>
+                        </c:choose>
+
                     </div>
                 </div>
             </div>
