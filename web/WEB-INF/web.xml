@@ -76,6 +76,18 @@
         <servlet-name>EditProductController</servlet-name>
         <servlet-class>controller.EditProductController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ManageAccountController</servlet-name>
+        <servlet-class>controller.ManageAccountController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteAccountController</servlet-name>
+        <servlet-class>controller.DeleteAccountController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SetAdminController</servlet-name>
+        <servlet-class>controller.SetAdminController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/HomeController</url-pattern>
@@ -151,6 +163,18 @@
     <servlet-mapping>
         <servlet-name>EditProductController</servlet-name>
         <url-pattern>/edit-product</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageAccountController</servlet-name>
+        <url-pattern>/manage-account</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteAccountController</servlet-name>
+        <url-pattern>/delete-account</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SetAdminController</servlet-name>
+        <url-pattern>/set-admin</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

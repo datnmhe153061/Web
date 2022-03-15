@@ -37,7 +37,6 @@ public class ManageProductController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession();
             ProductDAO pd = new ProductDAO();
             ArrayList<Product> list = pd.getAllProduct();
             ArrayList<Category> listcategory = new CategoryDAO().getAll();

@@ -42,17 +42,12 @@ public class SearchServlet extends HttpServlet {
         ArrayList<Category> listcategory = new CategoryDAO().getAll();
         ArrayList<Product> listproduct = new ProductDAO().searchProductByName(textSearch);
         
-        String indexPage = request.getParameter("index");
+        String indexPage = request.getParameter("page");
         if(indexPage == null){
             indexPage = "1";
         }
         int index = Integer.parseInt(indexPage);
-        
         int count = listproduct.size();
-        int page = count/8;
-        if(count % 8 != 0){
-            page++;
-        }
         int indax = index*8;
         if(index*8 > listproduct.size()){
             indax = listproduct.size();
@@ -66,13 +61,9 @@ public class SearchServlet extends HttpServlet {
         }
         request.setAttribute("listproduct", listproduct.subList((index-1)*8, indax));
         request.setAttribute("newproduct", listproduct);
-        request.setAttribute("page", page);
-        request.setAttribute("tag", index);
+        request.setAttribute("index", index);
         request.setAttribute("txt", textSearch);
         request.setAttribute("listcategory", listcategory);
-        response.getWriter().print("<h1>"+indexPage+"</h1>");
-        response.getWriter().print("<h1>"+textSearch+"</h1>");
-        response.getWriter().print("<h1>"+page+"</h1>");
         request.getSession().setAttribute("UrlHistory", "ProductServlet");
         request.getRequestDispatcher("search.jsp").forward(request, response);
     }

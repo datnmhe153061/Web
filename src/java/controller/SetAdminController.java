@@ -5,23 +5,20 @@
  */
 package controller;
 
-import dao.CategoryDAO;
-import dao.ProductDAO;
+import dao.AccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Category;
-import model.Product;
+import model.Account;
 
 /**
  *
  * @author Laptop88
  */
-public class FilterCategoryController extends HttpServlet {
+public class SetAdminController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,35 +32,26 @@ public class FilterCategoryController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        int categoryid = Integer.parseInt(request.getParameter("categoryId"));
-        ArrayList<Category> listcategory = new CategoryDAO().getAll();
-        ArrayList<Product> listproduct = new ProductDAO().getProductByCategoryId(categoryid);
-        String indexPage = request.getParameter("page");
-        if(indexPage == null){
-            indexPage = "1";
-        }
-        int index = Integer.parseInt(indexPage);
-        
-        int indax = index*8;
-        if(index*8 > listproduct.size()){
-            indax = listproduct.size();
-        }
-        for (Product p : listproduct) {
-            if(p.getListproduct_id() == 1){
-                
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            int accountid = Integer.parseInt(request.getParameter("accountid"));
+            String admin = request.getParameter("admin");
+            String seller = request.getParameter("seller");
+            String pass = request.getParameter("pass");
+            if(admin != null){
+                admin = "true";
+            }else{
+                admin = "false";
             }
+            if(seller != null){
+                seller = "true";
+            }else{
+                seller = "false";
+            }
+            AccountDAO ad = new AccountDAO();
+            ad.saveAccount(Account.builder().id(accountid).password(pass).admin(Boolean.parseBoolean(admin)).seller(Boolean.parseBoolean(seller)).build());
+            response.sendRedirect("manage-account");
         }
-        for (int i = 0; i < 6; i++) {
-            ArrayList<Product> listsize = new ProductDAO().getProductByCategoryId(i+1);
-            listcategory.get(i).setSize(listsize.size());
-        }
-        request.setAttribute("listproduct", listproduct.subList((index-1)*8, indax));
-        request.setAttribute("newproduct", listproduct);
-        request.setAttribute("index", index);
-        request.setAttribute("listcategory", listcategory);
-        request.setAttribute("cid", categoryid);
-        request.getSession().setAttribute("UrlHistory", "filter-category?categoryId="+categoryid);
-        request.getRequestDispatcher("listofoneproduct.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

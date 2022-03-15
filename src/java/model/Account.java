@@ -21,8 +21,6 @@ public class Account {
     private String name;
     private String username;
     private String password;
-    private String email;
-    private String phone;
     private boolean seller;
     private boolean admin;
 }

@@ -33,8 +33,6 @@ public class AccountDAO extends BaseDAO<Account> {
                 c.setName(rs.getString("Name"));
                 c.setUsername(rs.getString("Username"));
                 c.setPassword(rs.getString("Password"));
-                c.setEmail(rs.getString("Email"));
-                c.setPhone(rs.getString("Phone"));
                 c.setSeller(rs.getBoolean("Seller"));
                 c.setAdmin(rs.getBoolean("Admin"));
                 return c;
@@ -58,8 +56,6 @@ public class AccountDAO extends BaseDAO<Account> {
                 c.setName(rs.getString("Name"));
                 c.setUsername(rs.getString("Username"));
                 c.setPassword(rs.getString("Password"));
-                c.setEmail(rs.getString("Email"));
-                c.setPhone(rs.getString("Phone"));
                 c.setSeller(rs.getBoolean("Seller"));
                 c.setAdmin(rs.getBoolean("Admin"));
                 return c;
@@ -81,6 +77,57 @@ public class AccountDAO extends BaseDAO<Account> {
             statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public ArrayList<Account> getAllAccount() {
+        ArrayList<Account> list = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM Account";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Account a = Account.builder().build();
+                a.setId(rs.getInt("Id"));
+                a.setName(rs.getString("Name"));
+                a.setUsername(rs.getString("Username"));
+                a.setPassword(rs.getString("Password"));
+                a.setAdmin(rs.getBoolean("Admin"));
+                a.setSeller(rs.getBoolean("Seller"));
+                list.add(a);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+
+    public void deleteAccount(int accountid) {
+        try {
+            String sql = "DELETE FROM Account WHERE Id = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, accountid);
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void saveAccount(Account account) {
+        try {
+            String sql = "UPDATE Account\n"
+                    + "SET [Password] = ? ,\n"
+                    + "[Admin] = ? ,\n"
+                    + "[Seller] = ?\n"
+                    + "WHERE [Id] = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, account.getPassword());
+            statement.setBoolean(2, account.isAdmin());
+            statement.setBoolean(3, account.isSeller());
+            statement.setInt(4, account.getId());
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

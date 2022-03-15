@@ -32,10 +32,9 @@
                             <c:when test="${sessionScope.account!=null}">
                                 <a class="nav-link dropdown-toggle" style="color: black" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">${sessionScope.account.name}</a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="#">Thông tin cá nhân</a></li>
                                     <c:if test="${sessionScope.account.admin == true}">
-                                        <li><a class="dropdown-item" href="#">Quản lí tài khoản</a></li>
-                                        <li><a class="dropdown-item" href="manager-product">Quản lí sản phẩm</a></li>
+                                        <li><a class="dropdown-item" href="manage-account">Quản lí tài khoản</a></li>
+                                        <li><a class="dropdown-item" href="manage-product">Quản lí sản phẩm</a></li>
                                     </c:if>
                                     <c:if test="${sessionScope.account.seller == true}">
                                         <li><a class="dropdown-item" href="#">Quản lí sản phẩm</a></li>

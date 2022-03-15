@@ -6,6 +6,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="tag" uri="/WEB-INF/tlds/mytag.tld" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -149,16 +150,7 @@
                         <div class="d-flex justify-content-center">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination">
-                                    <c:if test="${tag > 1}">
-                                        <li class="page-item"><a class="page-link" href="SearchServlet?index=${tag-1}">Previous</a></li>  
-                                        </c:if>
-
-                                    <c:forEach begin="1" end="${page}" var="i">
-                                        <li class="page-item ${tag==i?"active":""}"><a class="page-link" href="SearchServlet?index=${i}&textsearch=${txt}">${i}</a></li>
-                                        </c:forEach>
-                                        <c:if test="${tag < page}">
-                                        <li class="page-item"><a class="page-link" href="SearchServlet?index=${tag+1}">Next</a></li>
-                                        </c:if>      
+                                    <tag:TagHandler totalrecords="${newproduct.size()}" url="SearchServlet" pageindex="${index}"></tag:TagHandler>      
                                 </ul>
                             </nav>
                         </div>
