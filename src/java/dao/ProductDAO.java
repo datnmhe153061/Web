@@ -136,4 +136,64 @@ public class ProductDAO extends BaseDAO<Product> {
         return null;
     }
 
+    public void deleteProduct(int productId) {
+        try {
+            String sql = "DELETE FROM Product WHERE Id = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, productId);
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void insertProduct(Product product) {
+        try {
+            String sql = "INSERT [dbo].[Product] \n"
+                    + "([Name], [Price], [Promotionalprice], \n"
+                    + "[Description], [Quantity], [Listproduct_id], [Brand], [Image]) \n"
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, product.getName());
+            statement.setInt(2, product.getPrice());
+            statement.setInt(3, product.getPromotionprice());
+            statement.setString(4, product.getDescription());
+            statement.setInt(5, product.getQuantity());
+            statement.setInt(6, product.getListproduct_id());
+            statement.setString(7, product.getBrand());
+            statement.setString(8, product.getImage());
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void editProduct(Product product) {
+        try {
+            String sql = "UPDATE Product\n"
+                    + "SET [Name] = ? ,\n"
+                    + "[Image] = ? ,\n"
+                    + "[Description] = ?,\n"
+                    + "[Price] = ?,\n"
+                    + "[Promotionalprice] = ?,\n"
+                    + "[Listproduct_id] = ?,\n"
+                    + "[Brand] = ?,\n"
+                    + "[Quantity] = ?  \n"
+                    + "WHERE [Id] = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, product.getName());
+            statement.setString(2, product.getImage());
+            statement.setString(3, product.getDescription());
+            statement.setInt(4, product.getPrice());
+            statement.setInt(5, product.getPromotionprice());
+            statement.setInt(6, product.getListproduct_id());
+            statement.setString(7, product.getBrand());
+            statement.setInt(8, product.getQuantity());
+            statement.setInt(9, product.getId());
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

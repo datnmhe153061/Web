@@ -1,29 +1,24 @@
-package controller;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package controller;
 
 import dao.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Cart;
 import model.Product;
 
 /**
  *
  * @author Laptop88
  */
-public class AddToCartServlet extends HttpServlet {
+public class AddProductController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,23 +33,21 @@ public class AddToCartServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            int productid = Integer.parseInt(request.getParameter("productId"));
-            HttpSession session = request.getSession();
+            /* TODO output your page here. You may use following sample code. */
+            String name = request.getParameter("name");
+            String image = request.getParameter("image");
+            String description = request.getParameter("description");
+            String brand = request.getParameter("brand");
+            int price = Integer.parseInt(request.getParameter("price"));
+            int promotionprice = Integer.parseInt(request.getParameter("promotionprice"));
+            int quantity = Integer.parseInt(request.getParameter("quantity"));
+            int categoryid = Integer.parseInt(request.getParameter("categoryid"));
             
-            
-            Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
-            if(carts == null){
-                carts = new LinkedHashMap<>();
-            }
-            if(carts.containsKey(productid)){
-                int oldQuantity = carts.get(productid).getQuantity();
-                carts.get(productid).setQuantity(oldQuantity+1);
-            }else{
-                Product product = new ProductDAO().getProductByProductId(productid);
-                carts.put(productid, Cart.builder().product(product).quantity(1).build());
-            }
-            session.setAttribute("carts", carts);
-            response.sendRedirect((String) session.getAttribute("UrlHistory"));
+            ProductDAO pd = new ProductDAO();
+            pd.insertProduct(Product.builder().name(name).image(image).brand(brand)
+                    .description(description).quantity(quantity).price(price)
+                    .promotionprice(promotionprice).listproduct_id(categoryid).build());
+            response.sendRedirect("manage-product");
         }
     }
 

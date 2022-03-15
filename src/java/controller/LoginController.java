@@ -32,7 +32,7 @@ public class LoginController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -47,6 +47,30 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Cookie[] cookies = request.getCookies();
+        String username = null;
+        String password = null;
+        if (cookies != null) {
+            for (Cookie cooky : cookies) {
+                if (cooky.getName().equals("username")) {
+                    username = cooky.getValue();
+                }
+                if (cooky.getName().equals("password")) {
+                    password = cooky.getValue();
+                }
+                if (username != null && password != null) {
+                    break;
+                }
+            }
+        }
+        if (username != null && password != null) {
+            Account account = new AccountDAO().login(username, password);
+            if(account != null){
+                request.getSession().setAttribute("account", account);
+                response.sendRedirect("HomeController");
+                return;
+            }
+        }
         request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 
@@ -63,22 +87,22 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        boolean remember = request.getParameter("remember") !=null;
-        
+        boolean remember = request.getParameter("remember") != null;
+
         Account account = new AccountDAO().login(username, password);
-        
-        if(account != null){
-            if(remember){
+
+        if (account != null) {
+            if (remember) {
                 Cookie usernameCookie = new Cookie("username", username);
-                usernameCookie.setMaxAge(60*60*24);
+                usernameCookie.setMaxAge(60 * 60 * 24);
                 Cookie passwordCookie = new Cookie("password", password);
-                passwordCookie.setMaxAge(60*60^24);
+                passwordCookie.setMaxAge(60 * 60 ^ 24);
                 response.addCookie(usernameCookie);
                 response.addCookie(passwordCookie);
             }
             request.getSession().setAttribute("account", account);
             response.sendRedirect("HomeController");
-        }else{
+        } else {
             request.setAttribute("error", "Username or password incorrect");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }

@@ -31,7 +31,19 @@
                 </div>
                 <h3 class="text-danger">${error}</h3>
                 <button type="submit" class="btn btn-primary w-50">Login</button>
+
             </form>
+<!--            <form action="signup" class="form-signup">
+
+                <p style="text-align:center">OR</p>
+
+                <input name="user" type="text" id="user-name" class="form-control" placeholder="Full name" required="" autofocus="">
+                <input name="pass" type="password" id="user-pass" class="form-control" placeholder="Password" required autofocus="">
+                <input name="repass" type="password" id="user-repeatpass" class="form-control" placeholder="Repeat Password" required autofocus="">
+
+                <button class="btn btn-primary btn-block" type="submit"><i class="fas fa-user-plus"></i> Sign Up</button>
+                <a href="#" id="cancel_signup"><i class="fas fa-angle-left"></i> Back</a>
+            </form>-->
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

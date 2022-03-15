@@ -18,7 +18,7 @@ import model.Account;
  *
  * @author Laptop88
  */
-public class AccountDAO extends BaseDAO<Account>{
+public class AccountDAO extends BaseDAO<Account> {
 
     public Account login(String username, String password) {
         try {
@@ -27,8 +27,8 @@ public class AccountDAO extends BaseDAO<Account>{
             statement.setString(1, username);
             statement.setString(2, password);
             ResultSet rs = statement.executeQuery();
-            while(rs.next()){
-                Account c =  Account.builder().build();
+            while (rs.next()) {
+                Account c = Account.builder().build();
                 c.setId(rs.getInt("Id"));
                 c.setName(rs.getString("Name"));
                 c.setUsername(rs.getString("Username"));
@@ -44,5 +44,44 @@ public class AccountDAO extends BaseDAO<Account>{
         }
         return null;
     }
-    
+
+    public Account checkAccountExist(String username) {
+        try {
+            String sql = "SELECT * FROM Account "
+                    + "WHERE Username = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, username);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Account c = Account.builder().build();
+                c.setId(rs.getInt("Id"));
+                c.setName(rs.getString("Name"));
+                c.setUsername(rs.getString("Username"));
+                c.setPassword(rs.getString("Password"));
+                c.setEmail(rs.getString("Email"));
+                c.setPhone(rs.getString("Phone"));
+                c.setSeller(rs.getBoolean("Seller"));
+                c.setAdmin(rs.getBoolean("Admin"));
+                return c;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public void SignUp(String username, String password) {
+        try {
+            String sql = "INSERT INTO Account\n"
+                    + "(Username, Password, Admin, Seller) \n"
+                    + "VALUES (?, ?,0,0)";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, username);
+            statement.setString(2, password);
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }
