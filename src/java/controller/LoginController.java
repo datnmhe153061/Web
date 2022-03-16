@@ -103,7 +103,7 @@ public class LoginController extends HttpServlet {
             request.getSession().setAttribute("account", account);
             response.sendRedirect("HomeController");
         } else {
-            request.setAttribute("error", "Username or password incorrect");
+            request.setAttribute("alert", "Sai tên tài khoản hoặc mật khẩu");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }

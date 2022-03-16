@@ -26,7 +26,7 @@
                                 </div>
                                 <div class="col-8 text-form-footer">
                                     <h3>Miễn phí ship</h3>
-                                    <p>Đơn hàng trên 300.000 đồng</p>
+                                    <p>Đơn hàng trên 3.000.000 đồng</p>
                                 </div>
                             </div>
                         </div>
@@ -56,27 +56,28 @@
                     <div class="col-md-2 footer-social">
                         <h5>Social</h5>
                         <ul>
-                            <li class="facebook"><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-                            <li class="linkedin"><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
-                            <li class="twitter"><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
-                            <li class="gplus"><a href="#"><i class="fa-brands fa-google-plus"></i></a></li>
-                            <li class="youtube"><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
+                            <li class="facebook"><a href="https://www.facebook.com/dat4401/"><i class="fa-brands fa-facebook-f"></i></a></li>
+                            <li class="linkedin"><a href="https://www.instagram.com/"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                            <li class="twitter"><a href="https://twitter.com/home?lang=vi"><i class="fa-brands fa-twitter"></i></a></li>
+                            <li class="gplus"><a href="https://www.google.com/"><i class="fa-brands fa-google-plus"></i></a></li>
+                            <li class="youtube"><a href="https://www.youtube.com/"><i class="fa-brands fa-youtube"></i></a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-2 footer-logo"> <a href="#"><img alt="index.html" src="image/logo-footer.png"></a> </div>
-                    <div class="col-md-6 footer-desc"> <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </span> </div>
+                    <div class="col-md-2 footer-logo"> <a href="HomeController"><img alt="" src="image/product/mainlogo.png"></a> </div>
+                    <div class="col-md-6 footer-desc"> <span>Gym Store: 
+                            Nếu bạn đang cân nhắc về nhu cầu thể hình, đang tìm kiếm những dụng cụ hỗ trợ nhanh chóng và tiện lợi, chúng tôi sẽ giúp bạn dễ dàng tìm thấy chính xác thứ bạn cần với mức giá bạn có thể mua được.</span> </div>
                     <div class="col-md-3 footer-block">
                         <div class="content_footercms_right">
                             <div class="footer-contact">
-                                <h5 class="contact-title footer-title">Contact Us</h5>
+                                <h5 class="contact-title footer-title">Liên hệ</h5>
                                 <ul class="ul-wrapper">
-                                    <li><i class="fa fa-map-marker"></i><span class="location2"> Warehouse & Offices,<br>
-                                            12345 Street name, California<br>
-                                            USA</span></li>
-                                    <li><i class="fa fa-envelope"></i><span class="mail2"><a href="#">info@localhost.com</a></span></li>
-                                    <li><i class="fa fa-mobile"></i><span class="phone2">+ 0987-654-321</span></li>
+                                    <li><i class="fa fa-map-marker"></i><span class="location2"> Trường Đại Học FPT,<br>
+                                            Thạch Hòa, Thạch Thất, Hà Nội<br>
+                                            Việt Nam</span></li>
+                                    <li><i class="fa fa-envelope"></i><span class="mail2"><a href="#">datnmhe153061@fpt.edu.com</a></span></li>
+                                    <li><i class="fa fa-mobile"></i><span class="phone2">+ 0839-911-131</span></li>
                                 </ul>
                             </div>
                         </div>

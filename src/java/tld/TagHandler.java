@@ -19,6 +19,7 @@ public class TagHandler extends SimpleTagSupport {
     private int pageindex;
     private String url;
     private int totalrecords;
+    private String item;
     public int getPageindex() {
         return pageindex;
     }
@@ -42,6 +43,14 @@ public class TagHandler extends SimpleTagSupport {
     public void setTotalrecords(int totalrecords) {
         this.totalrecords = totalrecords;
     }
+
+    public String getItem() {
+        return item;
+    }
+
+    public void setItem(String item) {
+        this.item = item;
+    }
     
     /**
      * Called by the container to invoke this tag. The implementation of this
@@ -59,23 +68,23 @@ public class TagHandler extends SimpleTagSupport {
                 totalpage++;
             }
             if (pageindex != 1) {
-                out.print("<li class=\"page-item\"><a class=\"page-link\" href=\""+url+"?page=1\">Previous</a></li> ");
+                out.print("<li class=\"page-item\"><a class=\"page-link\" href=\""+url+"?page=" + (pageindex - 1) + item + "\">Previous</a></li> ");
             }
             if (pageindex - 2 > 0) {
-                out.print(" <li class=\"page-item\"> <a class=\"page-link\" href=\""+url+"?page=" + (pageindex - 2) + "\">" + (pageindex - 2) + "</a></li>\n");
+                out.print(" <li class=\"page-item\"> <a class=\"page-link\" href=\""+url+"?page=" + (pageindex - 2) + item + "\">" + (pageindex - 2) + "</a></li>");
             }
             if (pageindex - 1 > 0) {
-                out.print(" <li class=\"page-item\"> <a class=\"page-link\" href=\""+url+"?page=" + (pageindex - 1) + "\">" + (pageindex - 1) + "</a></li>\n");
+                out.print(" <li class=\"page-item\"> <a class=\"page-link\" href=\""+url+"?page=" + (pageindex - 1) + item + "\">" + (pageindex - 1) + "</a></li>");
             }
-            out.print(" <li class=\"page-item active\"> <a class=\"page-link\" href=\""+url+"?page=" + pageindex + "\">" + pageindex + "</a></li>\n");
+            out.print(" <li class=\"page-item active\"> <a class=\"page-link\" href=\""+url+"?page=" + pageindex + item + "\">" + pageindex + "</a></li>");
             if (pageindex + 1 < totalpage) {
-                out.print(" <li class=\"page-item\"> <a class=\"page-link\" href=\""+url+"?page=" + (pageindex + 1) + "\">" + (pageindex + 1) + "</a></li>\n");
+                out.print(" <li class=\"page-item\"> <a class=\"page-link\" href=\""+url+"?page=" + (pageindex + 1) + item + "\">" + (pageindex + 1) + "</a></li>");
             }
             if (pageindex + 2 < totalpage) {
-                out.print(" <li class=\"page-item\"> <a class=\"page-link\" href=\""+url+"?page=" + (pageindex + 2) + "\">" + (pageindex + 2) + "</a></li>\n");
+                out.print(" <li class=\"page-item\"> <a class=\"page-link\" href=\""+url+"?page=" + (pageindex + 2) + item + "\">" + (pageindex + 2) + "</a></li>");
             }
             if (pageindex != totalpage) {
-                out.print(" <li class=\"page-item\"> <a class=\"page-link\" href=\""+url+"?page=" + (totalpage) + "\">Last</a></li>\n");
+                out.print(" <li class=\"page-item\"> <a class=\"page-link\" href=\""+url+"?page=" + (pageindex + 1) + item + "\">Next</a></li>");
             }
 
             JspFragment f = getJspBody();

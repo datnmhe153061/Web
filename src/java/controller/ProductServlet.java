@@ -8,7 +8,6 @@ package controller;
 import dao.CategoryDAO;
 import dao.ProductDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

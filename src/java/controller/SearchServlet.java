@@ -47,6 +47,7 @@ public class SearchServlet extends HttpServlet {
             indexPage = "1";
         }
         int index = Integer.parseInt(indexPage);
+        
         int count = listproduct.size();
         int indax = index*8;
         if(index*8 > listproduct.size()){

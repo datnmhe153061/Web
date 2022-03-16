@@ -74,7 +74,7 @@
                                             <div class="col mb-0" style="padding: 0px 0px">
                                                 <div class="card h-100">
                                                     <!-- Sale badge-->
-                                                    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">-<fmt:formatNumber type="number" maxFractionDigits="0" value="${100-(p.promotionprice/p.price*100)}" />%</div>
+                                                    <div class="badge bg-dark text-white position-absolute " style="top: 0.5rem; right: 0.5rem">-<fmt:formatNumber type="number" maxFractionDigits="0" value="${100-(p.promotionprice/p.price*100)}" />%</div>
                                                     <!-- Product image-->
                                                     <img class="card-img-top" src="${p.image}" alt="..." />
                                                     <!-- Product details-->
@@ -91,17 +91,21 @@
                                                                 <div class="bi-star-fill"></div>
                                                             </div>
                                                             <!-- Product price-->
-                                                            <span class="text-muted text-decoration-line-through"><fmt:formatNumber value="${p.promotionprice}" type="currency"/></span>
+                                                            <span class="text-muted text-decoration-line-through"><fmt:formatNumber value="${p.price}" type="currency"/></span>
                                                             <br>
-                                                            <span class="fw-bold fs-5" style="color: red;"><fmt:formatNumber value="${p.price}" type="currency"/></span>
+                                                            <span class="fw-bold fs-5" style="color: red;"><fmt:formatNumber value="${p.promotionprice}" type="currency"/></span>
                                                         </div>
                                                     </div>
                                                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                                        <div class="text-center"><a class="btn btn-outline-info mt-auto bg-info text-white" href="#" style="font-size: 12px">Xem Sản Phẩm</a></div>
-                                                    </div>
-                                                    <!-- Product actions-->
-                                                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                                        <div class="text-center"><a class="btn btn-outline-info mt-auto" href="AddToCartServlet?productId=${p.id}" style="font-size: 12px"><i class="fa-solid fa-cart-plus"></i><br>Thêm vào giỏ hàng</a></div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <span class="text-center"><a class="btn btn-outline-info mt-auto bg-info text-white" href="#" style="font-size: 14px"><i class="fa-solid fa-eye"></i><br>Xem Sản Phẩm</a></span>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <span class="text-center"><a class="btn btn-outline-warning mt-auto font-" href="AddToCartServlet?productId=${p.id}" style="font-size: 14px"><i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ hàng</a></span>
+                                                            </div>
+                                                        </div>
+
                                                     </div>
                                                 </div>
                                             </div>

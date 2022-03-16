@@ -36,6 +36,10 @@
             <name>totalrecords</name>
             <rtexprvalue>true</rtexprvalue>
         </attribute>
+        <attribute>
+            <name>item</name>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
         <body-content>scriptless</body-content>
    
     </tag>

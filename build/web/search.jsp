@@ -33,7 +33,7 @@
                     <div id="column-left" class="row">
                         <div class="col-md-3">
                             <div class="column-block">
-                                <div class="columnblock-title"><h1 style="box-shadow: 0 3px tomato">Categories</h1></div>
+                                <div class="columnblock-title"><h1 style="box-shadow: 0 3px orange">Danh Mục</h1></div>
                                 <div class="category_block" style="background-color: white">
                                     <ul class="list-group">
                                     <c:forEach items="${listcategory}" var="s" varStatus="loop">
@@ -47,7 +47,7 @@
                             </div>
                         </div>
                         <div class="category_block">
-                            <h4 class="text-danger text-uppercase">Sản Phẩm Mới</h4>
+                            <h4 class="text-warning text-uppercase">Sản Phẩm Mới</h4>
                             <c:forEach  begin="3" end="8" var="new" items="${newproduct}">
                                 <div class="row mb-2 border border-1 bg-white">
                                     <div class="col-md-5">
@@ -73,7 +73,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6"><h1>Danh sách sản phẩm</h1></div>
+                            <div class="col-md-6"><h1 style="box-shadow: 0 3px orange">Danh sách sản phẩm</h1></div>
                             <div class="col-md-2">
                                 <select class="form-select" aria-label="Default select example" >
                                     <option selected>Thương hiệu</option>
@@ -105,7 +105,6 @@
                                 </select>
                             </div>
                         </div>
-                        <div><h1 style="box-shadow: 0 3px tomato">List Product</h1></div>
                         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                             <c:if test="${nofound != null}">
                                 <h3>${nofound}</h3>
@@ -137,7 +136,7 @@
                                         </div>
                                         <!-- Product actions-->
                                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                            <div class="text-center"><a class="btn btn-outline-info mt-auto bg-info text-white" href="#" style="font-size: 12px">Xem Sản Phẩm</a></div>
+                                            <div class="text-center"><a class="btn btn-outline-info mt-auto bg-info text-white" href="#" style="font-size: 12px"><i class="fa-solid fa-eye"></i><br>Xem Sản Phẩm</a></div>
                                         </div>
                                         <!-- Product actions-->
                                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
@@ -150,7 +149,7 @@
                         <div class="d-flex justify-content-center">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination">
-                                    <tag:TagHandler totalrecords="${newproduct.size()}" url="SearchServlet" pageindex="${index}"></tag:TagHandler>      
+                                <tag:TagHandler totalrecords="${newproduct.size()}" url="SearchServlet" pageindex="${index}" item="&textsearch=${txt}"></tag:TagHandler>     
                                 </ul>
                             </nav>
                         </div>

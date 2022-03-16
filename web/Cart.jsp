@@ -23,20 +23,20 @@
             <div class="container px-4 px-lg-5 " style="min-height: 500px">
             <c:choose>
                 <c:when test="${sessionScope.carts.size()==null||sessionScope.carts.size()==0}">
-                    <h1>List Cart is Empty</h1>
+                    <h1 class="text-warning text-center m-5">Giỏ hàng không có sản phẩm nào</h1>
                 </c:when>
                 <c:otherwise>
-                    <h3>Cart</h3>
+                    <h1 class="text-warning text-center m-5">Giỏ hàng</h1>
                     <table class="table">
                         <thead>
-                            <tr>
+                            <tr class="table-dark">
                                 <th scope="col">Id</th>
-                                <th scope="col">Image</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Quantity</th>
-                                <th scope="col">Total Price</th>
-                                <th scope="col">Action</th>
+                                <th scope="col">Hình ảnh</th>
+                                <th scope="col">Tên sản phẩm</th>
+                                <th scope="col">Số lượng</th>
+                                <th scope="col">Giá tiền</th>
+                                <th scope="col">Tổng giá</th>
+                                <th scope="col">Hành động</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -45,19 +45,28 @@
                                 <tr>
                                 <input type="hidden" name="productId" value="${c.value.product.id}" />
                                 <th scope="row">${c.value.product.id}</th>
-                                <td><img src="${c.value.product.image}" width="100"/></td>
+                                <td><img src="${c.value.product.image}" width="120"/></td>
                                 <td>${c.value.product.name}</td>
+                                <td><input onchange="this.form.submit()" type="number" name="quantity" value="${c.value.quantity}" style="width: 50px"/></td>
                                 <td>${c.value.product.promotionprice}</td>
-                                <td><input onchange="this.form.submit()" type="number" name="quantity" value="${c.value.quantity}"/></td>
                                 <td>${c.value.product.promotionprice*c.value.quantity}</td>
                                 <td><a href="delete-cart?productId=${c.value.product.id}" class="btn btn-outline-danger"><i class="fa-solid fa-trash-can"></i> Delete</a></td>
                                 </tr>
                             </form>
                         </c:forEach>
+                        <tr style="border: #fff">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><h3>Tổng tiền:</h3></td>
+                            <td><h3>${totalMoney}đ</h3></td>
+                            <td></td>
+                        </tr>
                         </tbody>
                     </table>
-                    <h3>Total Amount: ${totalMoney}đ</h3>
-                    <a href="checkout" class="btn btn-success w-25">Mua</a>
+                    <a href="HomeController" class="btn btn-info w-25"><i class="fa-solid fa-angle-left"></i> Tiếp tục mua sắm</a>
+                    <a href="checkout" class="btn btn-success w-25" style="float: right">Mua <i class="fa-solid fa-angle-right"></i></a>
                 </c:otherwise>
             </c:choose>
         </div>    

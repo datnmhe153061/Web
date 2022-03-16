@@ -5,50 +5,56 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <link href="css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="css/login.css" rel="stylesheet" type="text/css"/>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <link href="css/bootstrap.min.css" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" rel="stylesheet"/>
     </head>
     <body>
-        <div class="mt-5" style="width: 40%; margin: auto; border: 1px solid #ccc; padding: 1rem">
-            <h3>Login</h3>
-            <form action="login" method="post">
-                <div class="mb-3">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp">
-                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        <div class="form">
+            <div class="form-toggle"></div>
+            <div class="form-panel one">
+                <div class="form-header">
+                    <h1>Đăng nhập tài khoản</h1>
                 </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" name="password">
+                <div class="form-content">
+                    <form action="login" method="POST">
+                        <div class="form-group">
+                            <label for="username">Tài khoản</label>
+                            <input id="username" type="text" name="username" value="" required="required"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Mật khẩu</label>
+                            <input id="password" type="password" name="password" value="" required="required"/>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-remember">
+                                <input type="checkbox" name="remember" value="ON"/>Ghi nhớ tôi
+                        </div>
+                        <c:if test="${alert!=null}">
+                            <div class="form-group">
+                                <p style="color: red">${alert}</p>
+                            </div>
+                        </c:if>
+                        <div class="form-group">
+                            <button type="submit">Đăng nhập</button>
+                        </div>
+                         <div class="form-group">
+                            <a href="HomeController"><i class="fa-solid fa-angle-left"></i> Trở về</a>
+                        </div>
+                    </form>
                 </div>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1" name="remember">
-                    <label class="form-check-label" for="exampleCheck1">Remember me</label>
-                </div>
-                <h3 class="text-danger">${error}</h3>
-                <button type="submit" class="btn btn-primary w-50">Login</button>
-
-            </form>
-<!--            <form action="signup" class="form-signup">
-
-                <p style="text-align:center">OR</p>
-
-                <input name="user" type="text" id="user-name" class="form-control" placeholder="Full name" required="" autofocus="">
-                <input name="pass" type="password" id="user-pass" class="form-control" placeholder="Password" required autofocus="">
-                <input name="repass" type="password" id="user-repeatpass" class="form-control" placeholder="Repeat Password" required autofocus="">
-
-                <button class="btn btn-primary btn-block" type="submit"><i class="fas fa-user-plus"></i> Sign Up</button>
-                <a href="#" id="cancel_signup"><i class="fas fa-angle-left"></i> Back</a>
-            </form>-->
+            </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-
-        <script src="js/SmoothScroll.min.js"></script>
     </body>
+    <script src="js/SmoothScroll.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </html>

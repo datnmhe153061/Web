@@ -36,7 +36,8 @@ public class RegisterServlet extends HttpServlet {
         String pass = request.getParameter("pass");
         String repass = request.getParameter("repass");
         if(!pass.equals(repass)){
-            response.sendRedirect("login.jsp");
+            request.setAttribute("alert", "Mật khẩu xác nhận không khớp.");
+            request.getRequestDispatcher("register.jsp").forward(request, response);
         }else{
             AccountDAO ad = new AccountDAO();
             Account account = ad.checkAccountExist(user);
@@ -44,7 +45,8 @@ public class RegisterServlet extends HttpServlet {
                 ad.SignUp(user, pass);
                 response.sendRedirect("HomeController");
             }else{
-                response.sendRedirect("login.jsp");
+               request.setAttribute("alert", "Tài khoản này đã được sử dụng");
+               request.getRequestDispatcher("register.jsp").forward(request, response);
             }
         }
         
