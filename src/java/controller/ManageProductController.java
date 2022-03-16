@@ -36,12 +36,25 @@ public class ManageProductController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
             ProductDAO pd = new ProductDAO();
             ArrayList<Product> list = pd.getAllProduct();
             ArrayList<Category> listcategory = new CategoryDAO().getAll();
+            String indexPage = request.getParameter("page");
+            if (indexPage == null) {
+                indexPage = "1";
+            }
+            int index = Integer.parseInt(indexPage);
+
+            int indax = index * 8;
+            if (index * 8 > list.size()) {
+                indax = list.size();
+            }
+            request.setAttribute("list", list.subList((index - 1) * 8, indax));
+            request.setAttribute("newlist", list);
+            request.setAttribute("index", index);
             request.setAttribute("listcategory", listcategory);
-            request.setAttribute("list", list);
             request.getRequestDispatcher("manageproduct.jsp").forward(request, response);
         }
     }

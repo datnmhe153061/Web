@@ -13,6 +13,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.Account;
 import model.BuyHistory;
 
 /**
@@ -33,9 +35,12 @@ public class BuyHistoryController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            ArrayList<BuyHistory> list = new BuyHistoryDAO().getAllHistory();
+            HttpSession session = request.getSession();
+            Account account = (Account) session.getAttribute("account");
+            ArrayList<BuyHistory> list = new BuyHistoryDAO().getAllHistoryByAccountId(account.getId());
             request.setAttribute("list", list);
             request.getRequestDispatcher("viewhistorybuy.jsp").forward(request, response);
         }

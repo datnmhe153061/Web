@@ -76,7 +76,7 @@
                                                     <!-- Sale badge-->
                                                     <div class="badge bg-dark text-white position-absolute " style="top: 0.5rem; right: 0.5rem">-<fmt:formatNumber type="number" maxFractionDigits="0" value="${100-(p.promotionprice/p.price*100)}" />%</div>
                                                     <!-- Product image-->
-                                                    <img class="card-img-top" src="${p.image}" alt="..." />
+                                                    <a href="ViewProductServlet?productId=${p.id}"><img class="card-img-top" src="${p.image}" alt="..." /></a>
                                                     <!-- Product details-->
                                                     <div class="card-body p-4">
                                                         <div class="text-center">
@@ -99,10 +99,15 @@
                                                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                                         <div class="row">
                                                             <div class="col-md-6">
-                                                                <span class="text-center"><a class="btn btn-outline-info mt-auto bg-info text-white" href="#" style="font-size: 14px"><i class="fa-solid fa-eye"></i><br>Xem Sản Phẩm</a></span>
+                                                                <span class="text-center"><a class="btn btn-outline-info mt-auto bg-info text-white" href="ViewProductServlet?productId=${p.id}" style="font-size: 14px"><i class="fa-solid fa-eye"></i><br>Xem Sản Phẩm</a></span>
                                                             </div>
                                                             <div class="col-md-6">
-                                                                <span class="text-center"><a class="btn btn-outline-warning mt-auto font-" href="AddToCartServlet?productId=${p.id}" style="font-size: 14px"><i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ hàng</a></span>
+                                                                <c:if test="${p.quantity >0}">
+                                                                    <span class="text-center"><a class="btn btn-warning mt-auto text-white" href="AddToCartServlet?productId=${p.id}" style="font-size: 14px"><i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ hàng</a></span>
+                                                                </c:if>
+                                                                <c:if test="${p.quantity<1}">
+                                                                    <button type="button" class="btn btn-danger mt-2">HẾT HÀNG</button>
+                                                                </c:if>
                                                             </div>
                                                         </div>
 

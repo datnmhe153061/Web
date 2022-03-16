@@ -40,6 +40,7 @@ public class CheckoutController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession();
             Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
@@ -100,10 +101,11 @@ public class CheckoutController extends HttpServlet {
                 Cart cart = entry.getValue();
                 BuyHistory buy = BuyHistory.builder().productid(cart.getProduct().getId()).productname(cart.getProduct().getName())
                         .productprice(cart.getProduct().getPromotionprice()).quantity(cart.getQuantity())
-                        .recipient(name).phone(phone).address(address).note(note).accountid(account.getId()).build();
+                        .recipient(name).phone(phone).address(address).note(note).accountid(account.getId()).productimage(cart.getProduct().getImage()).build();
                 bd.insertBuyHistory(buy);
                 pd.updateQuantityProduct(cart.getProduct().getId(), pd.getProductByProductId(cart.getProduct().getId()).getQuantity()-cart.getQuantity());
             }
+        session.removeAttribute("carts");
         response.sendRedirect("thank.jsp");
     }
 

@@ -38,9 +38,9 @@
                                     <ul class="list-group">
                                     <c:forEach items="${listcategory}" var="s" varStatus="loop">
                                         <li class="">
-                                            <i class="fa-solid fa-plus"></i>
+                                            <i class="fa-solid fa-plus text-warning"></i>
                                             <a href="filter-category?categoryId=${s.id}">${s.name}</a>
-                                            <span class="badge bg-secondary text-white ms-1 rounded-pill" style="background-color: #0a53be">${s.size}</span>
+                                            <span class="badge bg-warning text-white ms-1 rounded-pill" style="background-color: #0a53be">${s.size}</span>
                                         </li>
                                     </c:forEach>
                                 </ul>
@@ -51,7 +51,7 @@
                             <c:forEach  begin="3" end="8" var="new" items="${newproduct}">
                                 <div class="row mb-2 border border-1 bg-white">
                                     <div class="col-md-5">
-                                        <img class="card-img-top" src="${new.image}" alt="..." />
+                                        <a href="ViewProductServlet?productId=${new.id}"><img class="card-img-top pt-2" src="${new.image}" alt="..." /></a>
                                     </div>
                                     <div class="col-md-7">
                                         <h6>${new.name}</h6>
@@ -115,7 +115,7 @@
                                         <!-- Sale badge-->
                                         <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">-<fmt:formatNumber type="number" maxFractionDigits="0" value="${100-(p.promotionprice/p.price*100)}" />%</div>
                                         <!-- Product image-->
-                                        <img class="card-img-top" src="${p.image}" alt="..." />
+                                        <a href="ViewProductServlet?productId=${p.id}"><img class="card-img-top" src="${p.image}" alt="..." /></a>
                                         <!-- Product details-->
                                         <div class="card-body p-4">
                                             <div class="text-center">
@@ -136,11 +136,17 @@
                                         </div>
                                         <!-- Product actions-->
                                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                            <div class="text-center"><a class="btn btn-outline-info mt-auto bg-info text-white" href="#" style="font-size: 12px"><i class="fa-solid fa-eye"></i><br>Xem Sản Phẩm</a></div>
+                                            <div class="text-center"><a class="btn btn-outline-info mt-auto bg-info text-white" href="ViewProductServlet?productId=${p.id}" style="font-size: 12px"><i class="fa-solid fa-eye"></i><br>Xem Sản Phẩm</a></div>
                                         </div>
                                         <!-- Product actions-->
                                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                            <div class="text-center"><a class="btn btn-outline-info mt-auto" href="AddToCartServlet?productId=${p.id}" style="font-size: 12px"><i class="fa-solid fa-cart-plus"></i><br>Thêm vào giỏ hàng</a></div>
+                                            <c:if test="${p.quantity >0}">
+                                                <div class="text-center"><a class="btn btn-warning mt-auto text-white" href="AddToCartServlet?productId=${p.id}" style="font-size: 12px"><i class="fa-solid fa-cart-plus"></i><br>Thêm vào giỏ hàng</a></div>
+                                            </c:if>
+                                            <c:if test="${p.quantity<1}">
+                                                <button type="button" class="btn btn-danger ms-3">HẾT HÀNG</button>
+                                            </c:if>
+                                            
                                         </div>
                                     </div>
                                 </div>

@@ -32,18 +32,21 @@ public class RegisterServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        String displayname = request.getParameter("name");
         String user = request.getParameter("user");
         String pass = request.getParameter("pass");
         String repass = request.getParameter("repass");
         if(!pass.equals(repass)){
             request.setAttribute("alert", "Mật khẩu xác nhận không khớp.");
             request.getRequestDispatcher("register.jsp").forward(request, response);
+            return;
         }else{
             AccountDAO ad = new AccountDAO();
             Account account = ad.checkAccountExist(user);
             if(account == null){
-                ad.SignUp(user, pass);
-                response.sendRedirect("HomeController");
+                ad.SignUp(user, pass,displayname);
+                response.sendRedirect("login.jsp");
             }else{
                request.setAttribute("alert", "Tài khoản này đã được sử dụng");
                request.getRequestDispatcher("register.jsp").forward(request, response);

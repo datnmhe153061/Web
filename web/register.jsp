@@ -26,6 +26,10 @@
                 <div class="form-content">
                     <form action="signup" method="POST">
                         <div class="form-group">
+                            <label for="displayname">Tên hiển thị</label>
+                            <input id="displayname" type="text" name="name" value="" required="required"/>
+                        </div>
+                        <div class="form-group">
                             <label for="username">Tài khoản</label>
                             <input id="username" type="text" name="user" value="" required="required"/>
                         </div>

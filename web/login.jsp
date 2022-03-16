@@ -46,8 +46,11 @@
                         <div class="form-group">
                             <button type="submit">Đăng nhập</button>
                         </div>
+                        <div class="form-group">
+                            <a class="bg-info w-100 text-center" href="register.jsp"><i class="fa-solid fa-user-plus"></i> Đăng kí</a>
+                        </div>
                          <div class="form-group">
-                            <a href="HomeController"><i class="fa-solid fa-angle-left"></i> Trở về</a>
+                             <a class="bg-info" href="HomeController"><i class="fa-solid fa-angle-left"></i> Trở về</a>
                         </div>
                     </form>
                 </div>

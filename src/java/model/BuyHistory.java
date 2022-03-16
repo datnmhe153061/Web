@@ -24,9 +24,10 @@ public class BuyHistory {
     private int quantity;
     private int productprice;
     private int accountid;
-    private Date Date;
+    private Date date;
     private String recipient;
     private String phone;
     private String address;
     private String note;
+    private String productimage;
 }

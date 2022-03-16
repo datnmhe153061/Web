@@ -24,6 +24,7 @@
             <c:choose>
                 <c:when test="${sessionScope.carts.size()==null||sessionScope.carts.size()==0}">
                     <h1 class="text-warning text-center m-5">Giỏ hàng không có sản phẩm nào</h1>
+                    <a href="HomeController" class="btn btn-info w-25"><i class="fa-solid fa-angle-left"></i> Trở lại mua sắm</a>
                 </c:when>
                 <c:otherwise>
                     <h1 class="text-warning text-center m-5">Giỏ hàng</h1>
@@ -48,8 +49,8 @@
                                 <td><img src="${c.value.product.image}" width="120"/></td>
                                 <td>${c.value.product.name}</td>
                                 <td><input onchange="this.form.submit()" type="number" name="quantity" value="${c.value.quantity}" style="width: 50px"/></td>
-                                <td>${c.value.product.promotionprice}</td>
-                                <td>${c.value.product.promotionprice*c.value.quantity}</td>
+                                <td><fmt:formatNumber value="${c.value.product.promotionprice}" type="currency"/></td>
+                                <td><fmt:formatNumber value="${c.value.product.promotionprice*c.value.quantity}" type="currency"/></td>
                                 <td><a href="delete-cart?productId=${c.value.product.id}" class="btn btn-outline-danger"><i class="fa-solid fa-trash-can"></i> Delete</a></td>
                                 </tr>
                             </form>
@@ -60,7 +61,7 @@
                             <td></td>
                             <td></td>
                             <td><h3>Tổng tiền:</h3></td>
-                            <td><h3>${totalMoney}đ</h3></td>
+                            <td><h3><fmt:formatNumber value="${totalMoney}" type="currency"/></h3></td>
                             <td></td>
                         </tr>
                         </tbody>

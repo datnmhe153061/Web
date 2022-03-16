@@ -22,7 +22,7 @@
         <jsp:include page="header.jsp"></jsp:include>
             <div class="container px-4 px-lg-5 " style="min-height: 500px">
                 <div class="row">
-                    <h1 class="text-center my-5">Thanh toán</h1>
+                    <h1 class="text-center my-5 text-warning">Thanh toán</h1>
                     <div class="col-md-8" >
                         
                         <div class="mb-5" style="border: 1px solid #ccc; border-radius: 10px; padding: 1rem" >
@@ -98,7 +98,8 @@
                             <label for="note" class="form-label">Ghi chú</label>
                             <textarea class="form-control" id="note" name="note" rows="3"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary w-100">Mua hàng</button>
+                        <button type="submit" class="btn btn-success w-100">Mua hàng</button>
+                        <a href="HomeController" class="btn btn-info w-100 mt-5"><i class="fa-solid fa-angle-left"></i> Trở lại mua sắm</a>
                     </form>
                 </div>
             </div>

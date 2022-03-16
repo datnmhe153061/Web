@@ -36,9 +36,21 @@ public class ManageAccountController extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             AccountDAO ad = new AccountDAO();
             ArrayList<Account> list = ad.getAllAccount();
-            request.setAttribute("list", list);
+            String indexPage = request.getParameter("page");
+            if (indexPage == null) {
+                indexPage = "1";
+            }
+            int index = Integer.parseInt(indexPage);
+
+            int indax = index * 8;
+            if (index * 8 > list.size()) {
+                indax = list.size();
+            }
+            request.setAttribute("list", list.subList((index - 1) * 8, indax));
+            request.setAttribute("newlist", list);
+            request.setAttribute("index", index);
             request.getRequestDispatcher("manageaccount.jsp").forward(request, response);
-            
+
         }
     }
 

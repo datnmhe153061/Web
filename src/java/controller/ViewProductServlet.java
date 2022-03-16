@@ -31,6 +31,7 @@ public class ViewProductServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         String product_id = request.getParameter("productId");
         int productid = Integer.parseInt(product_id);
         Product getproduct = new ProductDAO().getProductByProductId(productid);

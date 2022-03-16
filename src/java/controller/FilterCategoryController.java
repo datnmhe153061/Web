@@ -35,6 +35,7 @@ public class FilterCategoryController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         int categoryid = Integer.parseInt(request.getParameter("categoryId"));
         ArrayList<Category> listcategory = new CategoryDAO().getAll();
         ArrayList<Product> listproduct = new ProductDAO().getProductByCategoryId(categoryid);

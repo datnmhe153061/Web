@@ -21,12 +21,12 @@
     </head>
     <body>
         <!-- Edit Modal HTML -->
-        <div id="addEmployeeModal" >
+        <div id="updateEmployeeModal">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form action="edit-product" method="post">
                         <div class="modal-header">						
-                            <h4 class="modal-title">Add Product</h4>
+                            <h4 class="modal-title">Sửa thông tin sản phẩm</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">
@@ -35,35 +35,35 @@
                                 <input value="${product.id}" name="productid" type="text" class="form-control" readonly required>
                             </div>
                             <div class="form-group">
-                                <label>Name</label>
+                                <label>Tên sản phẩm</label>
                                 <input value="${product.name}" name="name" type="text" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>Image</label>
+                                <label>Hình ảnh</label>
                                 <input  value="${product.image}" name="image" type="text" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>Price</label>
+                                <label>Giá thị trường</label>
                                 <input value="${product.price}" name="price" type="number" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>PromotionPrice</label>
+                                <label>Giá bán</label>
                                 <input value="${product.promotionprice}" name="promotionprice" type="number" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>Quantity</label>
+                                <label>Số lượng</label>
                                 <input value="${product.quantity}" name="quantity" type="number" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>Description</label>
+                                <label>Mô tả</label>
                                 <textarea name="description" class="form-control" required>${product.description}</textarea>
                             </div>
                             <div class="form-group">
-                                <label>Brand</label>
+                                <label>Thương hiệu</label>
                                 <input value="${product.brand}" name="brand" type="text" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>Category</label>
+                                <label>Danh mục</label>
                                 <select name="categoryid" class="form-select" aria-label="Default select example">
                                     <c:forEach items="${listcategory}" var="o">
                                         <option ${o.id==product.listproduct_id?"selected":""} value="${o.id}">${o.name}</option>
@@ -73,8 +73,8 @@
 
                         </div>
                         <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" class="btn btn-success" value="Add">
+                            <a href="manage-product"><input type="button" class="btn btn-default" data-dismiss="modal" value="Hủy"></a>
+                            <input type="submit" class="btn btn-success" value="Save">
                         </div>
                     </form>
                 </div>

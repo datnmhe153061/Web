@@ -52,15 +52,15 @@
                             <span class="item_price">Tiết kiệm:</span><span class="badge bg-dark text-white position-absolute mx-2"><fmt:formatNumber type="number" maxFractionDigits="0" value="${100-(getproduct.promotionprice/getproduct.price*100)}" />%</span><br>
                             <span class="item_price">Tình trạng: </span>
                             <c:if test="${getproduct.quantity > 0}">
-                                <span class="fw-bold">Còn hàng</span><br>
+                                <span class="fw-bold">Còn hàng </span><span>(${getproduct.quantity} sản phẩm)</span><br>
                             </c:if>
-                            <c:if test="${getproduct.quantity < 0}">
+                            <c:if test="${getproduct.quantity < 1}">
                                 <span class="fw-bold">HẾT HÀNG</span><br>
                             </c:if>
 
                         </p>
                         <div class="single-infoagile">
-                            <span class="fs-5">Mô tả: </span><span>${getproduct.description}</span>
+                            <span class="fs-5">Mô tả: </span><span class="fw-bold">${getproduct.name} </span><span>${getproduct.description}</span>
                         </div>
                         <div class="product-single-w3l">
                             <p class="my-3">

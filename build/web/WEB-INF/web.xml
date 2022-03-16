@@ -49,10 +49,6 @@
         <servlet-class>controller.LogoutController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AdminController</servlet-name>
-        <servlet-class>controller.AdminController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>RegisterServlet</servlet-name>
         <servlet-class>controller.RegisterServlet</servlet-class>
     </servlet>
@@ -139,10 +135,6 @@
     <servlet-mapping>
         <servlet-name>LogoutController</servlet-name>
         <url-pattern>/logout</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>AdminController</servlet-name>
-        <url-pattern>/admin/boss</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>

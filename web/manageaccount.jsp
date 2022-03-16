@@ -6,6 +6,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="tag" uri="/WEB-INF/tlds/mytag.tld" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -18,8 +19,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" rel="stylesheet"/>
     </head>
-    <body>
  
     <body>
         <div class="container">
@@ -27,7 +28,7 @@
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2>Manage <b>Account</b></h2>
+                            <h2>Quản lí <b>tài khoản</b></h2>
                         </div>
                     </div>
                 </div>
@@ -48,7 +49,7 @@
                         <c:forEach items="${list}" var="a">
                         <form action="set-admin" method="post">
                             <tr>
-                                <td><input  name="accountid" type="hidden" value="${a.id}">${a.id}</td>
+                                <th><input  name="accountid" type="hidden" value="${a.id}">${a.id}</th>
                                 <td>${a.name}</td>
                                 <td>${a.username}</td>
                                 <td><input name="pass" type="text" value="${a.password}"/></td>
@@ -65,20 +66,13 @@
                         </c:forEach>
                     </tbody>
                 </table>
-                <div class="clearfix">
-                    <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+                <div class="text-center">
                     <ul class="pagination">
-                        <li class="page-item disabled"><a href="#">Previous</a></li>
-                        <li class="page-item"><a href="#" class="page-link">1</a></li>
-                        <li class="page-item"><a href="#" class="page-link">2</a></li>
-                        <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                        <li class="page-item"><a href="#" class="page-link">4</a></li>
-                        <li class="page-item"><a href="#" class="page-link">5</a></li>
-                        <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                        <tag:TagHandler totalrecords="${newlist.size()}" url="manage-account" pageindex="${index}" item=""></tag:TagHandler>
                     </ul>
                 </div>
             </div>
-            <a href="#"><button type="button" class="btn btn-primary">Back to home</button>
+            <a href="HomeController"><button type="button" class="btn btn-primary"><i class="fa-solid fa-angle-left"></i> Trở về trang chủ</button></a>
 
         </div>
 

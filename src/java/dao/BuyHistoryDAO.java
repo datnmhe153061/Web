@@ -32,7 +32,8 @@ public class BuyHistoryDAO extends BaseDAO<BuyHistory> {
                     + "           ,[recipient]\n"
                     + "           ,[phone]\n"
                     + "           ,[address]\n"
-                    + "           ,[note])\n"
+                    + "           ,[note]\n"
+                    + "           ,[productimage])\n"
                     + "     VALUES\n"
                     + "           (?\n"
                     + "           ,?\n"
@@ -40,6 +41,7 @@ public class BuyHistoryDAO extends BaseDAO<BuyHistory> {
                     + "           ,?\n"
                     + "           ,?\n"
                     + "           ,GETDATE()\n"
+                    + "           ,?\n"
                     + "           ,?\n"
                     + "           ,?\n"
                     + "           ,?\n"
@@ -54,6 +56,7 @@ public class BuyHistoryDAO extends BaseDAO<BuyHistory> {
             statement.setString(7, buy.getPhone());
             statement.setString(8, buy.getAddress());
             statement.setString(9, buy.getNote());
+            statement.setString(10, buy.getProductimage());
             statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(BuyHistoryDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -79,6 +82,34 @@ public class BuyHistoryDAO extends BaseDAO<BuyHistory> {
                 p.setPhone(rs.getString("phone"));
                 p.setAddress(rs.getString("address"));
                 p.setNote(rs.getString("note"));
+                list.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+    public ArrayList<BuyHistory> getAllHistoryByAccountId( int accountid) {
+        ArrayList<BuyHistory> list = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM HistoryBuy WHERE Account_id = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, accountid);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                BuyHistory p = BuyHistory.builder().build();
+                p.setId(rs.getInt("Id"));
+                p.setProductid(rs.getInt("Product_id"));
+                p.setProductname(rs.getString("Product_name"));
+                p.setQuantity(rs.getInt("Quantity"));
+                p.setProductprice(rs.getInt("Product_price"));
+                p.setAccountid(rs.getInt("Account_id"));
+                p.setDate(rs.getDate("buy_date"));
+                p.setRecipient(rs.getString("recipient"));
+                p.setPhone(rs.getString("phone"));
+                p.setAddress(rs.getString("address"));
+                p.setNote(rs.getString("note"));
+                p.setProductimage(rs.getString("productimage"));
                 list.add(p);
             }
         } catch (SQLException ex) {

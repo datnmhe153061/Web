@@ -30,14 +30,13 @@
                     <div class="dropdown">
                         <c:choose>
                             <c:when test="${sessionScope.account!=null}">
-                                <a class="nav-link dropdown-toggle" style="color: black" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">${sessionScope.account.name}</a>
+                                <a class="nav-link dropdown-toggle" style="color: black" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user"></i> ${sessionScope.account.name}</a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <c:if test="${sessionScope.account.admin == true}">
                                         <li><a class="dropdown-item" href="manage-account">Quản lí tài khoản</a></li>
-                                        <li><a class="dropdown-item" href="manage-product">Quản lí sản phẩm</a></li>
                                     </c:if>
-                                    <c:if test="${sessionScope.account.seller == true}">
-                                        <li><a class="dropdown-item" href="#">Quản lí sản phẩm</a></li>
+                                    <c:if test="${sessionScope.account.admin == true || sessionScope.account.seller == true}">
+                                        <li><a class="dropdown-item" href="manage-product">Quản lí sản phẩm</a></li>
                                     </c:if>
                                     <li><a class="dropdown-item" href="buy-history">Lịch sử mua hàng</a></li>
                                     <li><a class="dropdown-item" href="logout">Logout</a></li>
@@ -56,7 +55,7 @@
                 </div>
             </div>
             <div>
-                <div class="d-flex mt-2" style="box-shadow: 1px 1px 1px 1px tomato; border-radius: 5px">
+                <div class="d-flex mt-2 justify-content-center" style="box-shadow: 1px 1px 1px 1px tomato; border-radius: 5px">
                     <a class="btn float-none " href="carts">
                         <i class="bi-cart-fill me-1"></i>
                         Giỏ hàng
@@ -72,10 +71,10 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4 pt-3">
-                <li class="nav-item fs-5"><a class="nav-link active" aria-current="page" href="HomeController">Trang chủ</a></li>
-                <li class="nav-item fs-5"><a class="nav-link" href="#!">Giới thiệu</a></li>
-                <li class="nav-item fs-5"><a class="nav-link" href="#!">Liên hệ</a></li>
-                <li class="nav-item fs-5"><a class="nav-link" href="ProductServlet">Sản phẩm</a></li>
+                <li class="nav-item fs-5 fw-bold"><a class="nav-link active" aria-current="page" href="HomeController" style="font-family: sans-serif">Trang chủ</a></li>
+                <li class="nav-item fs-5 "><a class="nav-link" href="#!" style="font-family: sans-serif">Giới thiệu</a></li>
+                <li class="nav-item fs-5"><a class="nav-link" href="#!" style="font-family: sans-serif">Liên hệ</a></li>
+                <li class="nav-item fs-5"><a class="nav-link" href="ProductServlet" style="font-family: sans-serif">Sản phẩm</a></li>
             </ul>
         </div>
         <form class="d-flex mt-3" action="SearchServlet" method="post">

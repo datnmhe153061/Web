@@ -66,14 +66,15 @@ public class AccountDAO extends BaseDAO<Account> {
         return null;
     }
 
-    public void SignUp(String username, String password) {
+    public void SignUp(String username, String password, String displayname) {
         try {
             String sql = "INSERT INTO Account\n"
-                    + "(Username, Password, Admin, Seller) \n"
-                    + "VALUES (?, ?,0,0)";
+                    + "(Name, Username, Password, Admin, Seller) \n"
+                    + "VALUES (?, ?, ?,0,0)";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, username);
-            statement.setString(2, password);
+            statement.setString(1, displayname);
+            statement.setString(2, username);
+            statement.setString(3, password);
             statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
