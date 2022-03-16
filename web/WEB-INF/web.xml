@@ -88,6 +88,10 @@
         <servlet-name>SetAdminController</servlet-name>
         <servlet-class>controller.SetAdminController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BuyHistoryController</servlet-name>
+        <servlet-class>controller.BuyHistoryController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/HomeController</url-pattern>
@@ -175,6 +179,10 @@
     <servlet-mapping>
         <servlet-name>SetAdminController</servlet-name>
         <url-pattern>/set-admin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BuyHistoryController</servlet-name>
+        <url-pattern>/buy-history</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

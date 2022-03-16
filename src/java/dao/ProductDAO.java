@@ -195,5 +195,19 @@ public class ProductDAO extends BaseDAO<Product> {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void updateQuantityProduct(int productid ,int quantity) {
+        try {
+            String sql = "UPDATE Product\n"
+                    + "SET [Quantity] = ?\n"
+                    + "WHERE [Id] = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, quantity);
+            statement.setInt(2, productid);
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 }

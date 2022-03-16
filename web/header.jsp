@@ -39,6 +39,7 @@
                                     <c:if test="${sessionScope.account.seller == true}">
                                         <li><a class="dropdown-item" href="#">Quản lí sản phẩm</a></li>
                                     </c:if>
+                                    <li><a class="dropdown-item" href="buy-history">Lịch sử mua hàng</a></li>
                                     <li><a class="dropdown-item" href="logout">Logout</a></li>
                                 </ul>
                             </c:when>

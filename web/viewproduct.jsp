@@ -45,45 +45,45 @@
                         </div>
                     </div>
                     <div class="col-lg-7 single-right-left simpleCart_shelfItem">
-                        <h3 class="mb-3">${getproduct.name}</h3>
+                        <h3 class="mb-3 pb-3 fs-1" style="border-bottom: #ffc107 solid thin">${getproduct.name}</h3>
                         <p class="mb-3">
-                            Giá thị trường: <span class="item_price text-decoration-line-through">${getproduct.price}</span><br>    
-                            <span class="item_price">Giá bán: ${getproduct.promotionprice}</span><br>
-                            <span class="item_price">Tiết kiệm: ${getproduct.promotionprice}</span><br>
-                            <span class="item_price">Tình trạng: ${getproduct.promotionprice}</span><br>
+                            <span class="item_price fs-5">Giá thị trường:</span> <span class="item_price text-decoration-line-through"><fmt:formatNumber value="${getproduct.price}" type="currency"/></span><br>    
+                            <span class="item_price fs-4">Giá bán: </span><span class="fs-2 text-danger fw-bold"><fmt:formatNumber value="${getproduct.promotionprice}" type="currency"/></span><br>
+                            <span class="item_price">Tiết kiệm:</span><span class="badge bg-dark text-white position-absolute mx-2"><fmt:formatNumber type="number" maxFractionDigits="0" value="${100-(getproduct.promotionprice/getproduct.price*100)}" />%</span><br>
+                            <span class="item_price">Tình trạng: </span>
+                            <c:if test="${getproduct.quantity > 0}">
+                                <span class="fw-bold">Còn hàng</span><br>
+                            </c:if>
+                            <c:if test="${getproduct.quantity < 0}">
+                                <span class="fw-bold">HẾT HÀNG</span><br>
+                            </c:if>
 
                         </p>
                         <div class="single-infoagile">
-                            <span class="border-end-1">Mô tả: ${getproduct.description}</span>
+                            <span class="fs-5">Mô tả: </span><span>${getproduct.description}</span>
                         </div>
                         <div class="product-single-w3l">
                             <p class="my-3">
                                 <label>Free ship</label><br>
                                 <i class="far fa-hand-point-right mr-2"></i>
-                                <label>1 Năm</label> Bảo Hành Toàn Quốc</p>
+                                <label class="fw-bold">1 Năm</label> Bảo Hành Toàn Quốc</p>
                             <p class="my-sm-4 my-3">
-                                <span class="item_price">Số lượng: </span><br>
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <a class="btn btn-outline-info mt-auto" href="AddToCartServlet?productId=${getproduct.id}" ><i class="fa-solid fa-cart-plus"></i><br>Thêm vào giỏ hàng</a>
-                                <a class="btn btn-outline-info mt-auto" href="#" ><i class="fa-solid fa-cart-plus"></i><br>Mua nhanh ngay</a>
+                            <div class="occasion-cart">
+                                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                                    <form action="AddToCartServlet" method="POST">
+                                        <fieldset>
+                                            <input type="hidden" name="productId" value="${getproduct.id}" />
+                                            <c:if test="${getproduct.quantity >0}">
+                                                <input type="submit" name="submit" value="Thêm vào giỏ hàng" class="btn btn-info text-white"/>
+                                            </c:if>
+                                            <c:if test="${getproduct.quantity<1}">
+                                                <button type="button" class="btn btn-danger">HẾT HÀNG</button>
+                                            </c:if>
+                                        </fieldset>
+                                    </form>
+                                </div>
                             </div>
-                           
-                            </p>
-                        </div>
-                        <div class="occasion-cart">
-                            <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                <form action="AddProductToCartServlet" method="POST">
-                                    <fieldset>
-                                        <input type="hidden" name="productidb" value="${product.id}" />
-                                        <c:if test="${product.soLuong>0}">
-                                            <input type="submit" name="submit" value="Thêm vào giỏ hàng" class="button btn" />
-                                        </c:if>
-                                        <c:if test="${product.soLuong<1}">
-                                            <button type="button" class="btn btn-danger">HẾT HÀNG</button>
-                                        </c:if>
-                                    </fieldset>
-                                </form>
-                            </div>
+
                         </div>
                     </div>
                 </div>
