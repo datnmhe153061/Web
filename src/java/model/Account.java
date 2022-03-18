@@ -23,4 +23,7 @@ public class Account {
     private String password;
     private boolean seller;
     private boolean admin;
+    private String email;
+    private String phone;
+    private String address;
 }

@@ -39,15 +39,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach var="c" items="${carts}">
+                                <c:forEach var="c" items="${listcart}">
                                     <tr>
-                                <input type="hidden" name="productId" value="${c.value.product.id}" />
-                                <th scope="row">${c.value.product.id}</th>
-                                <td><img src="${c.value.product.image}" width="100"/></td>
-                                <td>${c.value.product.name}</td>
-                                <td>${c.value.quantity}</td>
-                                <td>${c.value.product.promotionprice}</td>
-                                <td>${c.value.product.promotionprice*c.value.quantity}</td>
+                                <input type="hidden" name="productId" value="${c.product.id}" />
+                                <th scope="row">${c.product.id}</th>
+                                <td><img src="${c.product.image}" width="100"/></td>
+                                <td>${c.product.name}</td>
+                                <td>${c.quantity}</td>
+                                <td>${c.product.promotionprice}</td>
+                                <td>${c.product.promotionprice*c.quantity}</td>
                                 </tr>
                             </c:forEach>
                             <tr style="border: #fff">

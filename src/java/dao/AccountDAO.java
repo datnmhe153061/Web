@@ -22,7 +22,7 @@ public class AccountDAO extends BaseDAO<Account> {
 
     public Account login(String username, String password) {
         try {
-            String sql = "SELECT * FROM Account WHERE Username = ? AND Password = ?";
+            String sql = "SELECT * FROM [Account] WHERE Username = ? AND Password = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, username);
             statement.setString(2, password);
@@ -58,6 +58,9 @@ public class AccountDAO extends BaseDAO<Account> {
                 c.setPassword(rs.getString("Password"));
                 c.setSeller(rs.getBoolean("Seller"));
                 c.setAdmin(rs.getBoolean("Admin"));
+                c.setEmail(rs.getString("Email"));
+                c.setPhone(rs.getString("Phone"));
+                c.setAddress(rs.getString("Address"));
                 return c;
             }
         } catch (SQLException ex) {
@@ -95,12 +98,40 @@ public class AccountDAO extends BaseDAO<Account> {
                 a.setPassword(rs.getString("Password"));
                 a.setAdmin(rs.getBoolean("Admin"));
                 a.setSeller(rs.getBoolean("Seller"));
+                a.setEmail(rs.getString("Email"));
+                a.setPhone(rs.getString("Phone"));
+                a.setAddress(rs.getString("Address"));
                 list.add(a);
             }
         } catch (SQLException ex) {
             Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
+    }
+    
+     public Account getAccountById( int id) {
+        try {
+            String sql = "SELECT * FROM Account WHERE Id = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Account a = Account.builder().build();
+                a.setId(rs.getInt("Id"));
+                a.setName(rs.getString("Name"));
+                a.setUsername(rs.getString("Username"));
+                a.setPassword(rs.getString("Password"));
+                a.setAdmin(rs.getBoolean("Admin"));
+                a.setSeller(rs.getBoolean("Seller"));
+                a.setEmail(rs.getString("Email"));
+                a.setPhone(rs.getString("Phone"));
+                a.setAddress(rs.getString("Address"));
+                return a;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     public void deleteAccount(int accountid) {
@@ -117,9 +148,29 @@ public class AccountDAO extends BaseDAO<Account> {
     public void saveAccount(Account account) {
         try {
             String sql = "UPDATE Account\n"
-                    + "SET [Password] = ? ,\n"
+                    + "SET\n"
                     + "[Admin] = ? ,\n"
                     + "[Seller] = ?\n"
+                    + "WHERE [Id] = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setBoolean(1, account.isAdmin());
+            statement.setBoolean(2, account.isSeller());
+            statement.setInt(3, account.getId());
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void saveAccount1(Account account) {
+        try {
+            String sql = "UPDATE Account\n"
+                    + "SET [Password] = ? ,\n"
+                    + "[Admin] = ? ,\n"
+                    + "[Seller] = ? ,\n"
+                    + "[Email] = ? ,\n"
+                    + "[Phone] = ? ,\n"
+                    + "[Address] = ? \n"
                     + "WHERE [Id] = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, account.getPassword());

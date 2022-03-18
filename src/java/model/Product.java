@@ -23,7 +23,8 @@ public class Product {
     private int promotionprice;
     private String description;
     private int quantity;
-    private int listproduct_id;
+    private Category category;
     private String brand;
     private String image;
+    private int rate;
 }

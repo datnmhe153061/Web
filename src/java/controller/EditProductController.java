@@ -5,6 +5,7 @@
  */
 package controller;
 
+import dao.CategoryDAO;
 import dao.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -43,12 +44,14 @@ public class EditProductController extends HttpServlet {
             int price = Integer.parseInt(request.getParameter("price"));
             int promotionprice = Integer.parseInt(request.getParameter("promotionprice"));
             int quantity = Integer.parseInt(request.getParameter("quantity"));
+            int rate = Integer.parseInt(request.getParameter("rate"));
             int categoryid = Integer.parseInt(request.getParameter("categoryid"));
             
             ProductDAO pd = new ProductDAO();
+            CategoryDAO cd = new CategoryDAO();
             pd.editProduct(Product.builder().id(productid).name(name).image(image).brand(brand)
                     .description(description).quantity(quantity).price(price)
-                    .promotionprice(promotionprice).listproduct_id(categoryid).build());
+                    .promotionprice(promotionprice).category(cd.getCategoryById(categoryid)).rate(rate).build());
             response.sendRedirect("manage-product");
         }
     }

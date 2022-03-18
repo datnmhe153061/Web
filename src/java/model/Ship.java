@@ -5,7 +5,6 @@
  */
 package model;
 
-import java.util.Date;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,17 +16,10 @@ import lombok.Setter;
 @Builder
 @Getter
 @Setter
-public class BuyHistory {
+public class Ship {
     private int id;
-    private int productid;
-    private String productname;
-    private int quantity;
-    private int productprice;
-    private int accountid;
-    private Date date;
-    private String recipient;
+    private String name;
     private String phone;
     private String address;
     private String note;
-    private String productimage;
 }

@@ -49,7 +49,7 @@ public class ProductServlet extends HttpServlet {
             indax = listproduct.size();
         }
         for (Product p : listproduct) {
-            if(p.getListproduct_id() == 1){
+            if(p.getCategory().getId() == 1){
                 
             }
         }

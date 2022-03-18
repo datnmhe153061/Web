@@ -5,6 +5,7 @@
  */
 package controller;
 
+import dao.CartDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.LinkedHashMap;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Account;
 import model.Cart;
 
 /**
@@ -39,14 +41,10 @@ public class DeleteFromCart extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             int productid = Integer.parseInt(request.getParameter("productId"));
             HttpSession session = request.getSession();
-            Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
-            if(carts == null){
-                carts = new LinkedHashMap<>();
-            }
-            if(carts.containsKey(productid)){
-                carts.remove(productid);
-            }
-            session.setAttribute("carts", carts);
+            Account account = (Account) session.getAttribute("account");
+            CartDAO cd = new CartDAO();
+            Cart c = cd.getCartByAidandPid(account.getId(), productid);
+            cd.deleteCart(c.getId());
             response.sendRedirect("carts");
         }
     }

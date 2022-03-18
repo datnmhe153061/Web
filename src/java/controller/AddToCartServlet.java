@@ -6,9 +6,11 @@ package controller;
  * and open the template in the editor.
  */
 
+import dao.CartDAO;
 import dao.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.servlet.ServletException;
@@ -16,6 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Account;
 import model.Cart;
 import model.Product;
 
@@ -41,20 +44,17 @@ public class AddToCartServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             int productid = Integer.parseInt(request.getParameter("productId"));
             HttpSession session = request.getSession();
-            
-            
-            Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
-            if(carts == null){
-                carts = new LinkedHashMap<>();
-            }
-            if(carts.containsKey(productid)){
-                int oldQuantity = carts.get(productid).getQuantity();
-                carts.get(productid).setQuantity(oldQuantity+1);
+            Account account = (Account) session.getAttribute("account");
+            Product product = new ProductDAO().getProductByProductId(productid);
+            CartDAO cd = new  CartDAO();
+            Cart c = cd.getCartByAidandPid(account.getId(), productid);
+            ArrayList<Cart> list = cd.getCartByAccountId(account.getId());
+            if(c !=null){
+                int oldQuantity = c.getQuantity();
+                cd.updateCart(Cart.builder().id(c.getId()).product(product).quantity(oldQuantity+1).build());
             }else{
-                Product product = new ProductDAO().getProductByProductId(productid);
-                carts.put(productid, Cart.builder().product(product).quantity(1).build());
+                cd.insertCart(Cart.builder().product(product).quantity(1).account(account).build());
             }
-            session.setAttribute("carts", carts);
             response.sendRedirect((String) session.getAttribute("UrlHistory"));
         }
     }

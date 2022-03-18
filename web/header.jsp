@@ -34,12 +34,15 @@
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <c:if test="${sessionScope.account.admin == true}">
                                         <li><a class="dropdown-item" href="manage-account">Quản lí tài khoản</a></li>
-                                    </c:if>
-                                    <c:if test="${sessionScope.account.admin == true || sessionScope.account.seller == true}">
+                                        </c:if>
+                                        <c:if test="${sessionScope.account.admin == true || sessionScope.account.seller == true}">
                                         <li><a class="dropdown-item" href="manage-product">Quản lí sản phẩm</a></li>
-                                    </c:if>
-                                    <li><a class="dropdown-item" href="buy-history">Lịch sử mua hàng</a></li>
-                                    <li><a class="dropdown-item" href="logout">Logout</a></li>
+                                        <li><a class="dropdown-item" href="manage-order">Quản lí đơn hàng</a></li>
+                                        </c:if>
+                                    <li><a class="dropdown-item" href="">Thông tin cá nhân</a></li>
+                                    <li><a class="dropdown-item" href="list-order">Danh sách đơn hàng</a></li>
+                                    <li><a class="dropdown-item" href="buy-history?accountid=${sessionScope.account.id}">Lịch sử mua hàng</a></li>
+                                    <li><a class="dropdown-item" href="logout">Đăng Xuất</a></li>
                                 </ul>
                             </c:when>
                             <c:otherwise>
@@ -59,7 +62,7 @@
                     <a class="btn float-none " href="carts">
                         <i class="bi-cart-fill me-1"></i>
                         Giỏ hàng
-                        <span class="badge bg-dark text-white ms-1 rounded-pill">${sessionScope.carts.size()}</span>
+                        <span class="badge bg-dark text-white ms-1 rounded-pill"></span>
                     </a>
                 </div>
             </div>

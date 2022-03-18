@@ -22,7 +22,7 @@
         <jsp:include page="header.jsp"></jsp:include>
             <div class="container px-4 px-lg-5 " style="min-height: 500px">
             <c:choose>
-                <c:when test="${sessionScope.carts.size()==null||sessionScope.carts.size()==0}">
+                <c:when test="${listcart.size()==null||listcart.size()==0}">
                     <h1 class="text-warning text-center m-5">Giỏ hàng không có sản phẩm nào</h1>
                     <a href="HomeController" class="btn btn-info w-25"><i class="fa-solid fa-angle-left"></i> Trở lại mua sắm</a>
                 </c:when>
@@ -41,17 +41,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach var="c" items="${carts}">
+                            <c:forEach var="c" items="${listcart}">
                             <form action="update-quantity">
                                 <tr>
-                                <input type="hidden" name="productId" value="${c.value.product.id}" />
-                                <th scope="row">${c.value.product.id}</th>
-                                <td><img src="${c.value.product.image}" width="120"/></td>
-                                <td>${c.value.product.name}</td>
-                                <td><input onchange="this.form.submit()" type="number" name="quantity" value="${c.value.quantity}" style="width: 50px"/></td>
-                                <td><fmt:formatNumber value="${c.value.product.promotionprice}" type="currency"/></td>
-                                <td><fmt:formatNumber value="${c.value.product.promotionprice*c.value.quantity}" type="currency"/></td>
-                                <td><a href="delete-cart?productId=${c.value.product.id}" class="btn btn-outline-danger"><i class="fa-solid fa-trash-can"></i> Delete</a></td>
+                                <input type="hidden" name="productId" value="${c.product.id}" />
+                                <th scope="row">${c.product.id}</th>
+                                <td><img src="${c.product.image}" width="120"/></td>
+                                <td>${c.product.name}</td>
+                                <td><input onchange="this.form.submit()" type="number" name="quantity" value="${c.quantity}" style="width: 50px"/></td>
+                                <td><fmt:formatNumber value="${c.product.promotionprice}" type="currency"/></td>
+                                <td><fmt:formatNumber value="${c.product.promotionprice*c.quantity}" type="currency"/></td>
+                                <td><a href="delete-cart?productId=${c.product.id}" class="btn btn-outline-danger"><i class="fa-solid fa-trash-can"></i> Delete</a></td>
                                 </tr>
                             </form>
                         </c:forEach>

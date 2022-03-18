@@ -117,6 +117,10 @@
                                 <input name="brand" type="text" class="form-control" required>
                             </div>
                             <div class="form-group">
+                                <label>Đánh Giá</label>
+                                <input name="rate" type="text" class="form-control" required>
+                            </div>
+                            <div class="form-group">
                                 <label>Danh Mục</label>
                                 <select name="categoryid" class="form-select" aria-label="Default select example">
                                     <c:forEach items="${listcategory}" var="o">

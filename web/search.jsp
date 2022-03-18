@@ -48,7 +48,7 @@
                         </div>
                         <div class="category_block">
                             <h4 class="text-warning text-uppercase">Sản Phẩm Mới</h4>
-                            <c:forEach  begin="3" end="8" var="new" items="${newproduct}">
+                            <c:forEach  begin="3" end="8" var="new" items="${listall}">
                                 <div class="row mb-2 border border-1 bg-white">
                                     <div class="col-md-5">
                                         <a href="ViewProductServlet?productId=${new.id}"><img class="card-img-top pt-2" src="${new.image}" alt="..." /></a>
@@ -142,23 +142,25 @@
                                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                             <c:if test="${p.quantity >0}">
                                                 <div class="text-center"><a class="btn btn-warning mt-auto text-white" href="AddToCartServlet?productId=${p.id}" style="font-size: 12px"><i class="fa-solid fa-cart-plus"></i><br>Thêm vào giỏ hàng</a></div>
-                                            </c:if>
-                                            <c:if test="${p.quantity<1}">
+                                                    </c:if>
+                                                    <c:if test="${p.quantity<1}">
                                                 <button type="button" class="btn btn-danger ms-3">HẾT HÀNG</button>
                                             </c:if>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
                             </c:forEach>
                         </div>
-                        <div class="d-flex justify-content-center">
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination">
-                                <tag:TagHandler totalrecords="${newproduct.size()}" url="SearchServlet" pageindex="${index}" item="&textsearch=${txt}"></tag:TagHandler>     
-                                </ul>
-                            </nav>
-                        </div>
+                        <c:if test="${nofound == null}">
+                            <div class="d-flex justify-content-center">
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination">
+                                        <tag:TagHandler totalrecords="${newproduct.size()}" url="SearchServlet" pageindex="${index}" item="&textsearch=${txt}"></tag:TagHandler>     
+                                        </ul>
+                                    </nav>
+                                </div>
+                        </c:if>>
                     </div>
                 </div>
             </div>

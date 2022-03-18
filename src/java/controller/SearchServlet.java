@@ -41,7 +41,7 @@ public class SearchServlet extends HttpServlet {
         
         ArrayList<Category> listcategory = new CategoryDAO().getAll();
         ArrayList<Product> listproduct = new ProductDAO().searchProductByName(textSearch);
-        
+        ArrayList<Product> listallproduct = new ProductDAO().getAllProduct();
         String indexPage = request.getParameter("page");
         if(indexPage == null){
             indexPage = "1";
@@ -62,6 +62,7 @@ public class SearchServlet extends HttpServlet {
         }
         request.setAttribute("listproduct", listproduct.subList((index-1)*8, indax));
         request.setAttribute("newproduct", listproduct);
+        request.setAttribute("listall", listallproduct);
         request.setAttribute("index", index);
         request.setAttribute("txt", textSearch);
         request.setAttribute("listcategory", listcategory);

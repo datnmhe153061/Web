@@ -63,10 +63,14 @@
                                 <input value="${product.brand}" name="brand" type="text" class="form-control" required>
                             </div>
                             <div class="form-group">
+                                <label>Đánh giá</label>
+                                <input value="${product.rate}" name="rate" type="text" class="form-control" required>
+                            </div>
+                            <div class="form-group">
                                 <label>Danh mục</label>
                                 <select name="categoryid" class="form-select" aria-label="Default select example">
                                     <c:forEach items="${listcategory}" var="o">
-                                        <option ${o.id==product.listproduct_id?"selected":""} value="${o.id}">${o.name}</option>
+                                        <option ${o.id==product.category.id?"selected":""} value="${o.id}">${o.name}</option>
                                     </c:forEach>
                                 </select>
                             </div>

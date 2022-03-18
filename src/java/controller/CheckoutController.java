@@ -6,10 +6,14 @@
 package controller;
 
 import dao.AccountDAO;
-import dao.BuyHistoryDAO;
+import dao.CartDAO;
+import dao.OrderDAO;
+import dao.OrderDetailDAO;
 import dao.ProductDAO;
+import dao.ShipDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.servlet.ServletException;
@@ -19,8 +23,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Account;
-import model.BuyHistory;
+import model.OrderDetail;
 import model.Cart;
+import model.Order;
+import model.Ship;
 
 /**
  *
@@ -43,16 +49,14 @@ public class CheckoutController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession();
-            Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
-            if (carts == null) {
-                carts = new LinkedHashMap<>();
-            }
+            Account account = (Account) session.getAttribute("account");
+            CartDAO cd = new CartDAO();
+            ArrayList<Cart> list = cd.getCartByAccountId(account.getId());
             int totalMoney = 0;
-            for (Map.Entry<Integer, Cart> entry : carts.entrySet()) {
-                Integer productid = entry.getKey();
-                Cart cart = entry.getValue();
-                totalMoney += cart.getQuantity() * cart.getProduct().getPromotionprice();
+            for (Cart c : list) {
+                totalMoney += c.getQuantity()*c.getProduct().getPromotionprice();
             }
+            request.setAttribute("listcart", list);
             request.setAttribute("totalMoney", totalMoney);
             request.getRequestDispatcher("checkout.jsp").forward(request, response);
 
@@ -92,20 +96,25 @@ public class CheckoutController extends HttpServlet {
         String address = request.getParameter("address");
         String note = request.getParameter("note");
         HttpSession session = request.getSession();
-        
-        BuyHistoryDAO bd = new BuyHistoryDAO();
+
+        OrderDAO od = new OrderDAO();
+        ShipDAO sd = new ShipDAO();
         ProductDAO pd = new ProductDAO();
+        OrderDetailDAO bd = new OrderDetailDAO();
         Account account = (Account) session.getAttribute("account");
-        Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
-        for (Map.Entry<Integer, Cart> entry : carts.entrySet()) {
-                Cart cart = entry.getValue();
-                BuyHistory buy = BuyHistory.builder().productid(cart.getProduct().getId()).productname(cart.getProduct().getName())
-                        .productprice(cart.getProduct().getPromotionprice()).quantity(cart.getQuantity())
-                        .recipient(name).phone(phone).address(address).note(note).accountid(account.getId()).productimage(cart.getProduct().getImage()).build();
-                bd.insertBuyHistory(buy);
-                pd.updateQuantityProduct(cart.getProduct().getId(), pd.getProductByProductId(cart.getProduct().getId()).getQuantity()-cart.getQuantity());
-            }
-        session.removeAttribute("carts");
+        Ship s = Ship.builder().name(name).phone(phone).address(address).note(note).build();
+        sd.InsertShip(s);
+        Order o = Order.builder().account(account).ship(sd.getLastShipId()).build();
+        od.InsertOrder(o);
+        CartDAO cd = new CartDAO();
+         ArrayList<Cart> list = cd.getCartByAccountId(account.getId());
+
+        for (Cart cart: list) {
+            OrderDetail buy = OrderDetail.builder().order(od.getLastOrderId()).product(cart.getProduct()).quantity(cart.getQuantity()).build();
+            bd.insertOrderDetail(buy);
+            pd.updateQuantityProduct(cart.getProduct().getId(), pd.getProductByProductId(cart.getProduct().getId()).getQuantity() - cart.getQuantity());
+        }
+        cd.deleteCart(account.getId());
         response.sendRedirect("thank.jsp");
     }
 

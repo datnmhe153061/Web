@@ -52,7 +52,7 @@
                                 <th><input  name="accountid" type="hidden" value="${a.id}">${a.id}</th>
                                 <td>${a.name}</td>
                                 <td>${a.username}</td>
-                                <td><input name="pass" type="text" value="${a.password}"/></td>
+                                <td>${a.password}</td>
                                 <td><a><input name="admin" type="checkbox" ${a.admin==true?"checked":""}/></td>
                                 <td><input name="seller" type="checkbox" ${a.seller==true?"checked":""}/></td>
                                 <td>

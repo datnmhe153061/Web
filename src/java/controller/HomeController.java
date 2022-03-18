@@ -5,6 +5,7 @@
  */
 package controller;
 
+import dao.CartDAO;
 import dao.CategoryDAO;
 import dao.ProductDAO;
 import java.io.IOException;
@@ -14,6 +15,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.Account;
 import model.Category;
 import model.Product;
 
@@ -38,7 +41,7 @@ public class HomeController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         ArrayList<Category> listcategory = new CategoryDAO().getAll();
         ArrayList<Product> listproduct = new ProductDAO().getAllProduct();
-        
+
         request.setAttribute("listcategory", listcategory);
         request.setAttribute("listproduct", listproduct);
         request.getSession().setAttribute("UrlHistory", "HomeController");

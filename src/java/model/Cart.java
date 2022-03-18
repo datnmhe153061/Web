@@ -17,6 +17,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Cart {
+    private int id;
     private Product product;
     private int quantity;
+    private Account account;
+    private int totalprice;
 }

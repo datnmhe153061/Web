@@ -38,7 +38,6 @@ public class SetAdminController extends HttpServlet {
             int accountid = Integer.parseInt(request.getParameter("accountid"));
             String admin = request.getParameter("admin");
             String seller = request.getParameter("seller");
-            String pass = request.getParameter("pass");
             if(admin != null){
                 admin = "true";
             }else{
@@ -50,7 +49,7 @@ public class SetAdminController extends HttpServlet {
                 seller = "false";
             }
             AccountDAO ad = new AccountDAO();
-            ad.saveAccount(Account.builder().id(accountid).password(pass).admin(Boolean.parseBoolean(admin)).seller(Boolean.parseBoolean(seller)).build());
+            ad.saveAccount(Account.builder().id(accountid).admin(Boolean.parseBoolean(admin)).seller(Boolean.parseBoolean(seller)).build());
             response.sendRedirect("manage-account");
         }
     }

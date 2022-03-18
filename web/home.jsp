@@ -69,7 +69,7 @@
                             </div>
                             <div class="row row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                                 <c:forEach items="${listproduct}" var="p" varStatus="loop">
-                                    <c:if test="${p.listproduct_id == c.id}">
+                                    <c:if test="${p.category.id == c.id}">
                                         <c:if test="${count < 8 }">
                                             <div class="col mb-0" style="padding: 0px 0px">
                                                 <div class="card h-100">

@@ -5,8 +5,10 @@
  */
 package controller;
 
+import dao.CartDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.servlet.ServletException;
@@ -14,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Account;
 import model.Cart;
 
 /**
@@ -37,18 +40,15 @@ public class CartController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession();
-            Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
-            if(carts == null){
-                carts = new LinkedHashMap<>();
-            }
+            Account account = (Account) session.getAttribute("account");
+            CartDAO cd = new CartDAO();
+            ArrayList<Cart> list = cd.getCartByAccountId(account.getId());
             int totalMoney = 0;
-            for (Map.Entry<Integer, Cart> entry : carts.entrySet()) {
-                Integer productid = entry.getKey();
-                Cart cart = entry.getValue();
-                totalMoney += cart.getQuantity() * cart.getProduct().getPromotionprice();
+            for (Cart c : list) {
+                totalMoney += c.getQuantity()*c.getProduct().getPromotionprice();
             }
+            request.setAttribute("listcart", list);
             request.setAttribute("totalMoney", totalMoney);
-            request.setAttribute("carts", carts);
             request.getRequestDispatcher("Cart.jsp").forward(request, response);
         }
     }

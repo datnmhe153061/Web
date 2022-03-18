@@ -5,6 +5,7 @@
  */
 package controller;
 
+import dao.CartDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.LinkedHashMap;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Account;
 import model.Cart;
 
 /**
@@ -39,16 +41,15 @@ public class UpdateQuantityCart extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             int productid = Integer.parseInt(request.getParameter("productId"));
             int quantity = Integer.parseInt(request.getParameter("quantity"));
-            
             HttpSession session = request.getSession();
-            Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
-            if(carts == null){
-                carts = new LinkedHashMap<>();
+            Account account = (Account) session.getAttribute("account");
+            CartDAO cd = new  CartDAO();
+            Cart c = cd.getCartByAidandPid(account.getId(), productid);
+            if(quantity <= 0){
+                cd.deleteCart(c.getId());
+            }else{
+                cd.updateQuantityCart(c.getId(), c.getProduct().getPromotionprice()*quantity, quantity);
             }
-            if(carts.containsKey(productid)){
-                carts.get(productid).setQuantity(quantity);
-            }
-            session.setAttribute("carts", carts);
             response.sendRedirect("carts");
         }
     }

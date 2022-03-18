@@ -36,7 +36,6 @@ public class ViewProductServlet extends HttpServlet {
         int productid = Integer.parseInt(product_id);
         Product getproduct = new ProductDAO().getProductByProductId(productid);
         request.setAttribute("getproduct", getproduct);
-        response.getWriter().print("<h1>"+getproduct.getName()+"</h1>");
         request.getSession().setAttribute("UrlHistory", "ViewProductServlet?productId="+productid);
         request.getRequestDispatcher("viewproduct.jsp").forward(request, response);
     }

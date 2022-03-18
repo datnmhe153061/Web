@@ -88,6 +88,30 @@
         <servlet-name>BuyHistoryController</servlet-name>
         <servlet-class>controller.BuyHistoryController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListOrderController</servlet-name>
+        <servlet-class>controller.ListOrderController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OrderDetailController</servlet-name>
+        <servlet-class>controller.OrderDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManageOrderController</servlet-name>
+        <servlet-class>controller.ManageOrderController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteOrderController</servlet-name>
+        <servlet-class>controller.DeleteOrderController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteOrderController1</servlet-name>
+        <servlet-class>controller.DeleteOrderController1</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateOrderServlet</servlet-name>
+        <servlet-class>controller.UpdateOrderServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/HomeController</url-pattern>
@@ -175,6 +199,30 @@
     <servlet-mapping>
         <servlet-name>BuyHistoryController</servlet-name>
         <url-pattern>/buy-history</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListOrderController</servlet-name>
+        <url-pattern>/list-order</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderDetailController</servlet-name>
+        <url-pattern>/order-detail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageOrderController</servlet-name>
+        <url-pattern>/manage-order</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteOrderController</servlet-name>
+        <url-pattern>/delete-order</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteOrderController1</servlet-name>
+        <url-pattern>/delete-order-mana</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateOrderServlet</servlet-name>
+        <url-pattern>/update-order</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

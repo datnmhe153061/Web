@@ -34,9 +34,10 @@ public class ProductDAO extends BaseDAO<Product> {
                 p.setPromotionprice(rs.getInt("Promotionalprice"));
                 p.setDescription(rs.getString("Description"));
                 p.setQuantity(rs.getInt("Quantity"));
-                p.setListproduct_id(rs.getInt("Listproduct_id"));
+                p.setCategory(new CategoryDAO().getCategoryById(rs.getInt("Listcategory_id")));
                 p.setBrand(rs.getString("Brand"));
                 p.setImage(rs.getString("Image"));
+                p.setRate(rs.getInt("Rate"));
                 list.add(p);
             }
         } catch (SQLException ex) {
@@ -48,7 +49,7 @@ public class ProductDAO extends BaseDAO<Product> {
     public ArrayList<Product> getProductByCategoryId(int categoryId) {
         ArrayList<Product> list = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM Product WHERE Listproduct_id = ?";
+            String sql = "SELECT * FROM Product WHERE Listcategory_id = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, categoryId);
             ResultSet rs = statement.executeQuery();
@@ -60,9 +61,10 @@ public class ProductDAO extends BaseDAO<Product> {
                 p.setPromotionprice(rs.getInt("Promotionalprice"));
                 p.setDescription(rs.getString("Description"));
                 p.setQuantity(rs.getInt("Quantity"));
-                p.setListproduct_id(rs.getInt("Listproduct_id"));
+                p.setCategory(new CategoryDAO().getCategoryById(rs.getInt("Listcategory_id")));
                 p.setBrand(rs.getString("Brand"));
                 p.setImage(rs.getString("Image"));
+                p.setRate(rs.getInt("Rate"));
                 list.add(p);
             }
         } catch (SQLException ex) {
@@ -100,9 +102,10 @@ public class ProductDAO extends BaseDAO<Product> {
                 p.setPromotionprice(rs.getInt("Promotionalprice"));
                 p.setDescription(rs.getString("Description"));
                 p.setQuantity(rs.getInt("Quantity"));
-                p.setListproduct_id(rs.getInt("Listproduct_id"));
+                p.setCategory(new CategoryDAO().getCategoryById(rs.getInt("Listcategory_id")));
                 p.setBrand(rs.getString("Brand"));
                 p.setImage(rs.getString("Image"));
+                p.setRate(rs.getInt("Rate"));
                 list.add(p);
             }
         } catch (SQLException ex) {
@@ -125,9 +128,10 @@ public class ProductDAO extends BaseDAO<Product> {
                 p.setPromotionprice(rs.getInt("Promotionalprice"));
                 p.setDescription(rs.getString("Description"));
                 p.setQuantity(rs.getInt("Quantity"));
-                p.setListproduct_id(rs.getInt("Listproduct_id"));
+                p.setCategory(new CategoryDAO().getCategoryById(rs.getInt("Listcategory_id")));
                 p.setBrand(rs.getString("Brand"));
                 p.setImage(rs.getString("Image"));
+                p.setRate(rs.getInt("Rate"));
                 return p;
             }
         } catch (SQLException ex) {
@@ -149,19 +153,36 @@ public class ProductDAO extends BaseDAO<Product> {
 
     public void insertProduct(Product product) {
         try {
-            String sql = "INSERT [dbo].[Product] \n"
-                    + "([Name], [Price], [Promotionalprice], \n"
-                    + "[Description], [Quantity], [Listproduct_id], [Brand], [Image]) \n"
-                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO [dbo].[Product]\n"
+                    + "           ([Name]\n"
+                    + "           ,[Price]\n"
+                    + "           ,[Promotionalprice]\n"
+                    + "           ,[Description]\n"
+                    + "           ,[Quantity]\n"
+                    + "           ,[Listcategory_id]\n"
+                    + "           ,[Brand]\n"
+                    + "           ,[Image]\n"
+                    + "           ,[Rate])\n"
+                    + "     VALUES\n"
+                    + "           (?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
+                    + "           ,?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, product.getName());
             statement.setInt(2, product.getPrice());
             statement.setInt(3, product.getPromotionprice());
             statement.setString(4, product.getDescription());
             statement.setInt(5, product.getQuantity());
-            statement.setInt(6, product.getListproduct_id());
+            statement.setInt(6, product.getCategory().getId());
             statement.setString(7, product.getBrand());
             statement.setString(8, product.getImage());
+            statement.setInt(9, product.getRate());
             statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -176,8 +197,9 @@ public class ProductDAO extends BaseDAO<Product> {
                     + "[Description] = ?,\n"
                     + "[Price] = ?,\n"
                     + "[Promotionalprice] = ?,\n"
-                    + "[Listproduct_id] = ?,\n"
+                    + "[Listcategory_id] = ?,\n"
                     + "[Brand] = ?,\n"
+                    + "[Rate] = ?,\n"
                     + "[Quantity] = ?  \n"
                     + "WHERE [Id] = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -186,17 +208,18 @@ public class ProductDAO extends BaseDAO<Product> {
             statement.setString(3, product.getDescription());
             statement.setInt(4, product.getPrice());
             statement.setInt(5, product.getPromotionprice());
-            statement.setInt(6, product.getListproduct_id());
+            statement.setInt(6, product.getCategory().getId());
             statement.setString(7, product.getBrand());
-            statement.setInt(8, product.getQuantity());
-            statement.setInt(9, product.getId());
+            statement.setInt(8, product.getRate());
+            statement.setInt(9, product.getQuantity());
+            statement.setInt(10, product.getId());
             statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void updateQuantityProduct(int productid ,int quantity) {
+
+    public void updateQuantityProduct(int productid, int quantity) {
         try {
             String sql = "UPDATE Product\n"
                     + "SET [Quantity] = ?\n"
