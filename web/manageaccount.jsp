@@ -56,10 +56,10 @@
                                 <td><a><input name="admin" type="checkbox" ${a.admin==true?"checked":""}/></td>
                                 <td><input name="seller" type="checkbox" ${a.seller==true?"checked":""}/></td>
                                 <td>
-                                    <a href="delete-account?accountid=${a.id}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                    <a onclick="showMess(${a.id})" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                                 </td>
                                 <td>
-                                    <input type="submit" value="Save"/>
+                                    <input type="submit" class="btn btn-success" value="Save"/>
                                 </td>
                             </tr>
                         </form>    
@@ -80,5 +80,13 @@
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
         <script src="js/SmoothScroll.min.js"></script>
+        <script>
+        function showMess(id){
+           var option = confirm('Bạn có chắc chắn xóa tài khoản này không?');
+           if(option == true){
+               window.location.href = 'delete-account?accountid='+id;
+           }
+       }
+   </script>
     </body>
 </html>

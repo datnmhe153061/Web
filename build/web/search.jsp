@@ -74,36 +74,6 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6"><h1 style="box-shadow: 0 3px orange">Danh sách sản phẩm</h1></div>
-                            <div class="col-md-2">
-                                <select class="form-select" aria-label="Default select example" >
-                                    <option selected>Thương hiệu</option>
-                                    <option value="1">Việt Nam</option>
-                                    <option value="2">Trung Quốc</option>
-                                    <option value="3">Thái Lan</option>
-                                    <option value="4">Mỹ</option>
-                                    <option value="5">Úc</option>
-                                    <option value="6">Nhật Bản</option>
-                                    <option value="7">Hàn Quốc</option>
-                                </select>
-                            </div>
-                            <div class="col-md-2">
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Khoảng giá</option>
-                                    <option value="1">Dưới 5 triệu</option>
-                                    <option value="2">5 - 10 triệu</option>
-                                    <option value="3">10 - 20 triệu</option>
-                                    <option value="4">Trên 20 triệu</option>
-                                </select>
-                            </div>
-                            <div class="col-md-2">
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Sắp Xếp</option>
-                                    <option value="1">Tên: A đến Z</option>
-                                    <option value="2">Tên: Z đến A</option>
-                                    <option value="3">Giá tăng dần</option>
-                                    <option value="4">Giá giảm dần</option>
-                                </select>
-                            </div>
                         </div>
                         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                             <c:if test="${nofound != null}">

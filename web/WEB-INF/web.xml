@@ -85,10 +85,6 @@
         <servlet-class>controller.SetAdminController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>BuyHistoryController</servlet-name>
-        <servlet-class>controller.BuyHistoryController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ListOrderController</servlet-name>
         <servlet-class>controller.ListOrderController</servlet-class>
     </servlet>
@@ -111,6 +107,14 @@
     <servlet>
         <servlet-name>UpdateOrderServlet</servlet-name>
         <servlet-class>controller.UpdateOrderServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InfoAccountServlet</servlet-name>
+        <servlet-class>controller.InfoAccountServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateAccountController</servlet-name>
+        <servlet-class>controller.UpdateAccountController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
@@ -197,10 +201,6 @@
         <url-pattern>/set-admin</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>BuyHistoryController</servlet-name>
-        <url-pattern>/buy-history</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>ListOrderController</servlet-name>
         <url-pattern>/list-order</url-pattern>
     </servlet-mapping>
@@ -223,6 +223,14 @@
     <servlet-mapping>
         <servlet-name>UpdateOrderServlet</servlet-name>
         <url-pattern>/update-order</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InfoAccountServlet</servlet-name>
+        <url-pattern>/info-account</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateAccountController</servlet-name>
+        <url-pattern>/update-account</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -49,9 +49,9 @@
                                     <td><button type="button" class="btn btn-success">Đã gửi</button></td>
                                 </c:if>
                                 <td>
-                                    <a href="order-detail?orderid=${c.id}" class="btn btn-outline-danger"> Xem chi tiết</a>
+                                    <a href="order-detail?orderid=${c.id}" class="btn btn-outline-info"> Xem chi tiết</a>
                                     <c:if test="${c.status == false}">
-                                        <a href="delete-order?orderid=${c.id}" class="btn btn-outline-danger"><i class="fa-solid fa-trash-can"></i> Hủy đơn hàng</a>
+                                        <a onclick="showMess(${c.id})" class="btn btn-outline-danger"><i class="fa-solid fa-trash-can"></i> Hủy đơn hàng</a>
                                     </c:if>
                                 </td>
                                 </tr>
@@ -70,5 +70,13 @@
         <script src="js/scripts.js"></script>
 
         <script src="js/SmoothScroll.min.js"></script>
+        <script>
+        function showMess(id){
+           var option = confirm('Bạn có chắc chắn xóa đơn hàng này không?');
+           if(option == true){
+               window.location.href = 'delete-order?orderid='+id;
+           }
+       }
+   </script>
     </body>
 </html>

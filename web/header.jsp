@@ -39,9 +39,8 @@
                                         <li><a class="dropdown-item" href="manage-product">Quản lí sản phẩm</a></li>
                                         <li><a class="dropdown-item" href="manage-order">Quản lí đơn hàng</a></li>
                                         </c:if>
-                                    <li><a class="dropdown-item" href="">Thông tin cá nhân</a></li>
+                                     <li><a class="dropdown-item" href="info-account">Thông tin cá nhân</a></li>
                                     <li><a class="dropdown-item" href="list-order">Danh sách đơn hàng</a></li>
-                                    <li><a class="dropdown-item" href="buy-history?accountid=${sessionScope.account.id}">Lịch sử mua hàng</a></li>
                                     <li><a class="dropdown-item" href="logout">Đăng Xuất</a></li>
                                 </ul>
                             </c:when>

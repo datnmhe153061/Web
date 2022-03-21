@@ -5,23 +5,20 @@
  */
 package controller;
 
-import dao.OrderDetailDAO;
+import dao.AccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import model.Account;
-import model.OrderDetail;
 
 /**
  *
  * @author Laptop88
  */
-public class BuyHistoryController extends HttpServlet {
+public class UpdateAccountController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,14 +32,22 @@ public class BuyHistoryController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            HttpSession session = request.getSession();
-            Account account = (Account) session.getAttribute("account");
-            ArrayList<OrderDetail> list = new OrderDetailDAO().getOrderDetailByOrderId(account.getId());
-            request.setAttribute("list", list);
-            request.getRequestDispatcher("viewhistorybuy.jsp").forward(request, response);
+            request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        String name = request.getParameter("name");
+        String phone = request.getParameter("phone");
+        String email = request.getParameter("email");
+        String address = request.getParameter("address");
+        AccountDAO ad = new AccountDAO();
+        Account account = (Account) request.getSession().getAttribute("account");
+        Account acc = Account.builder().name(name).phone(phone).address(address).email(email).id(account.getId()).build();
+        ad.saveAccount2(acc);
+        Account getaccount = new AccountDAO().getAccountById(account.getId());
+        request.setAttribute("infoaccount", getaccount);
+        request.setAttribute("save", "Save Successful!");
+        request.getRequestDispatcher("informationaccount.jsp").forward(request, response);
         }
     }
 

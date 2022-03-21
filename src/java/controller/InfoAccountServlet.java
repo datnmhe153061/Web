@@ -5,19 +5,20 @@
  */
 package controller;
 
-import dao.OrderDAO;
+import dao.AccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Account;
 
 /**
  *
  * @author Laptop88
  */
-public class UpdateOrderServlet extends HttpServlet {
+public class InfoAccountServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,18 +32,15 @@ public class UpdateOrderServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            int orderid = Integer.parseInt(request.getParameter("orderid"));
-            String[] status = request.getParameterValues("status");
-            OrderDAO od = new OrderDAO();
-            if(Integer.parseInt(status[0]) == 1){
-                od.updateOrder(0, orderid);
-            }
-            if(Integer.parseInt(status[0]) == 2){
-                od.updateOrder(1, orderid);
-            }
-            response.sendRedirect("manage-order");
-
+            /* TODO output your page here. You may use following sample code. */
+            request.setCharacterEncoding("UTF-8");
+            Account account = (Account) request.getSession().getAttribute("account");
+            Account getaccount = new AccountDAO().getAccountById(account.getId());
+            request.setAttribute("infoaccount", getaccount);
+            request.getRequestDispatcher("informationaccount.jsp").forward(request, response);
         }
     }
 
@@ -72,7 +70,7 @@ public class UpdateOrderServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+            processRequest(request, response);
     }
 
     /**

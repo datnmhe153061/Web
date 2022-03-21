@@ -50,11 +50,11 @@
                                 <th><input  name="orderid" type="hidden" value="${a.id}">${a.id}</th>
                                 <td>${a.account.name}</td>
                                 <td>${a.createdate}</td>
-                                <td><input type="checkbox" name="status1" ${a.status==false?"checked":""}/></td>
-                                <td><input type="checkbox" name="status2" ${a.status==true?"checked":""}/></td>
+                                <td><input type="radio" name="status" value="1" ${a.status==false?"checked":""}/></td>
+                                <td><input type="radio" name="status" value="2" ${a.status==true?"checked":""}/></td>
                                 <td>
-                                    <input type="submit" value="Save"/>
-                                    <a href="delete-order-mana?orderid=${a.id}" class="text-danger" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Hủy">&#xE872;</i></a>
+                                    <input type="submit" class="btn btn-success" value="Lưu"/>
+                                    <a onclick="showMess(${a.id})" class="text-danger btn btn-danger" data-toggle="modal">Hủy</a>
                                 </td>
                             </tr>
                         </form>    
@@ -75,5 +75,13 @@
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
         <script src="js/SmoothScroll.min.js"></script>
+        <script>
+        function showMess(id){
+           var option = confirm('Bạn có chắc chắn xóa đơn hàng này không?');
+           if(option == true){
+               window.location.href = 'delete-order-mana?orderid='+id;
+           }
+       }
+   </script>
     </body>
 </html>
