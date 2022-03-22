@@ -54,12 +54,12 @@ public class CartDAO extends BaseDAO<Cart> {
         }
     }
 
-    public void deleteCart(int accountid) {
+    public void deleteCart(int id) {
         try {
             String sql = "DELETE FROM [dbo].[Cart]\n"
-                    + "      WHERE Account_id = ?";
+                    + "      WHERE Id = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, accountid);
+            statement.setInt(1, id);
             statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(CartDAO.class.getName()).log(Level.SEVERE, null, ex);

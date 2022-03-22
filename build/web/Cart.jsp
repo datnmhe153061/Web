@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Giỏ hàng</title>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
@@ -51,7 +51,7 @@
                                 <td><input onchange="this.form.submit()" type="number" name="quantity" value="${c.quantity}" style="width: 50px"/></td>
                                 <td><fmt:formatNumber value="${c.product.promotionprice}" type="currency"/></td>
                                 <td><fmt:formatNumber value="${c.product.promotionprice*c.quantity}" type="currency"/></td>
-                                <td><a href="delete-cart?productId=${c.product.id}" class="btn btn-outline-danger"><i class="fa-solid fa-trash-can"></i> Delete</a></td>
+                                <td><a onclick="showMess(${c.product.id})" class="btn btn-outline-danger"><i class="fa-solid fa-trash-can"></i> Delete</a></td>
                                 </tr>
                             </form>
                         </c:forEach>
@@ -77,5 +77,13 @@
         <script src="js/scripts.js"></script>
 
         <script src="js/SmoothScroll.min.js"></script>
+        <script>
+        function showMess(id){
+           var option = confirm('Bạn có chắc chắn xóa sản phẩm này ra khỏi đơn hàng không?');
+           if(option == true){
+               window.location.href = 'delete-cart?productId='+id;
+           }
+       }
+   </script>
     </body>
 </html>
