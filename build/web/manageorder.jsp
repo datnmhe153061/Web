@@ -27,8 +27,23 @@
             <div class="table-wrapper">
                 <div class="table-title">
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-md-10">
                             <h2>Quản lí <b>đơn hàng</b></h2>
+                        </div>
+                        <div class="col-md-2">
+                            <c:if test="${sessionScope.account!=null}">
+                                <a class="nav-link dropdown-toggle btn btn-success text-white" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user"></i> ${sessionScope.account.name}</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <c:if test="${sessionScope.account.admin == true}">
+                                        <li><a class="dropdown-item" href="manage-account">Quản lí tài khoản</a></li>
+                                    </c:if>
+                                    <c:if test="${sessionScope.account.admin == true || sessionScope.account.seller == true}">
+                                        <li><a class="dropdown-item" href="manage-product">Quản lí sản phẩm</a></li>
+                                        <li><a class="dropdown-item" href="manage-order">Quản lí đơn hàng</a></li>
+                                    </c:if>
+                                    <li><a class="dropdown-item" href="logout">Đăng Xuất</a></li>
+                                </ul>
+                            </c:if>
                         </div>
                     </div>
                 </div>

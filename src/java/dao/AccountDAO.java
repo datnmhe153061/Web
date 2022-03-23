@@ -186,16 +186,18 @@ public class AccountDAO extends BaseDAO<Account> {
         try {
             String sql = "UPDATE Account\n"
                     + "SET [Name] = ?,\n"
+                    + "[Password] = ? ,\n"
                     + "[Email] = ? ,\n"
                     + "[Phone] = ? ,\n"
                     + "[Address] = ? \n"
                     + "WHERE [Id] = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, account.getName());
-            statement.setString(2, account.getEmail());
-            statement.setString(3, account.getPhone());
-            statement.setString(4, account.getAddress());
-            statement.setInt(5, account.getId());
+            statement.setString(2, account.getPassword());
+            statement.setString(3, account.getEmail());
+            statement.setString(4, account.getPhone());
+            statement.setString(5, account.getAddress());
+            statement.setInt(6, account.getId());
             statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);

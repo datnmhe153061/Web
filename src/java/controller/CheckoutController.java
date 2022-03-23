@@ -114,7 +114,7 @@ public class CheckoutController extends HttpServlet {
             bd.insertOrderDetail(buy);
             pd.updateQuantityProduct(cart.getProduct().getId(), pd.getProductByProductId(cart.getProduct().getId()).getQuantity() - cart.getQuantity());
         }
-        cd.deleteCart(account.getId());
+        cd.deleteCartByAid(account.getId());
         response.sendRedirect("thank.jsp");
     }
 

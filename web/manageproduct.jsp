@@ -32,11 +32,26 @@
             <div class="table-wrapper">
                 <div class="table-title">
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-6">
                             <h2>Quản lí <b>sản phẩm</b></h2>
                         </div>
                         <div class="col-md-4 text-center">
                             <a href="#addEmployeeModal"  class="btn btn-success " data-toggle="modal"><i class="fa-solid fa-circle-plus"></i> <span>Thêm sản phẩm mới</span></a>						
+                        </div>
+                        <div class="col-md-2">
+                            <c:if test="${sessionScope.account!=null}">
+                                <a class="nav-link dropdown-toggle btn btn-success text-white" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user"></i> ${sessionScope.account.name}</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <c:if test="${sessionScope.account.admin == true}">
+                                        <li><a class="dropdown-item" href="manage-account">Quản lí tài khoản</a></li>
+                                    </c:if>
+                                    <c:if test="${sessionScope.account.admin == true || sessionScope.account.seller == true}">
+                                        <li><a class="dropdown-item" href="manage-product">Quản lí sản phẩm</a></li>
+                                        <li><a class="dropdown-item" href="manage-order">Quản lí đơn hàng</a></li>
+                                    </c:if>
+                                    <li><a class="dropdown-item" href="logout">Đăng Xuất</a></li>
+                                </ul>
+                            </c:if>
                         </div>
                     </div>
                 </div>
@@ -63,7 +78,7 @@
                                 <td>${o.promotionprice} $</td>
                                 <td>
                                     <a href="update-product?productid=${o.id}"  class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                    <a onclick="showMess(${o.id})" href="#" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                    <a onclick="showMess(${o.id})" href="#" class="delete" data-toggle="modal"><i class="material-icons " data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -72,57 +87,57 @@
                 <div class="text-center">
                     <ul class="pagination">
                         <tag:TagHandler totalrecords="${newlist.size()}" url="manage-product" pageindex="${index}" item=""></tag:TagHandler>
-                    </ul>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            <a href="HomeController"><button type="button" class="btn btn-primary"><i class="fa-solid fa-angle-left"></i> Trở về trang chủ</button></a>
+                <a href="HomeController"><button type="button" class="btn btn-primary"><i class="fa-solid fa-angle-left"></i> Trở về trang chủ</button></a>
 
-        </div>
-        <!-- Edit Modal HTML -->
-        <div id="addEmployeeModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form action="add-product" method="post">
-                        <div class="modal-header">						
-                            <h4 class="modal-title">Thêm sản phẩm</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        </div>
-                        <div class="modal-body">					
-                            <div class="form-group">
-                                <label>Tên sản phẩm</label>
-                                <input name="name" type="text" class="form-control" required>
+            </div>
+            <!-- Edit Modal HTML -->
+            <div id="addEmployeeModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form action="add-product" method="post">
+                            <div class="modal-header">						
+                                <h4 class="modal-title">Thêm sản phẩm</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             </div>
-                            <div class="form-group">
-                                <label>Hình ảnh</label>
-                                <input name="image" type="text" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Giá thị trường</label>
-                                <input name="price" type="number" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Giá bán</label>
-                                <input name="promotionprice" type="number" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Số lượng</label>
-                                <input name="quantity" type="number" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Mô tả</label>
-                                <textarea name="description" class="form-control" required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Thương Hiệu</label>
-                                <input name="brand" type="text" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Đánh Giá</label>
-                                <input name="rate" type="text" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Danh Mục</label>
-                                <select name="categoryid" class="form-select" aria-label="Default select example">
+                            <div class="modal-body">					
+                                <div class="form-group">
+                                    <label>Tên sản phẩm</label>
+                                    <input name="name" type="text" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Hình ảnh</label>
+                                    <input name="image" type="text" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Giá thị trường</label>
+                                    <input name="price" type="number" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Giá bán</label>
+                                    <input name="promotionprice" type="number" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Số lượng</label>
+                                    <input name="quantity" type="number" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Mô tả</label>
+                                    <textarea name="description" class="form-control" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Thương Hiệu</label>
+                                    <input name="brand" type="text" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Đánh Giá</label>
+                                    <input name="rate" type="text" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Danh Mục</label>
+                                    <select name="categoryid" class="form-select" aria-label="Default select example">
                                     <c:forEach items="${listcategory}" var="o">
                                         <option value="${o.id}">${o.name}</option>
                                     </c:forEach>
@@ -143,12 +158,12 @@
         <script src="js/scripts.js"></script>
         <script src="js/SmoothScroll.min.js"></script>
         <script>
-        function showMess(id){
-           var option = confirm('Bạn có chắc chắn xóa sản phẩm này không?');
-           if(option == true){
-               window.location.href = 'delete-product?productid='+id;
-           }
-       }
-   </script>
+                                        function showMess(id) {
+                                            var option = confirm('Bạn có chắc chắn xóa sản phẩm này không?');
+                                            if (option == true) {
+                                                window.location.href = 'delete-product?productid=' + id;
+                                            }
+                                        }
+        </script>
     </body>
 </html>

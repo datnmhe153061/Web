@@ -40,9 +40,10 @@ public class UpdateAccountController extends HttpServlet {
         String phone = request.getParameter("phone");
         String email = request.getParameter("email");
         String address = request.getParameter("address");
+        String pass = request.getParameter("password");
         AccountDAO ad = new AccountDAO();
         Account account = (Account) request.getSession().getAttribute("account");
-        Account acc = Account.builder().name(name).phone(phone).address(address).email(email).id(account.getId()).build();
+        Account acc = Account.builder().password(pass).name(name).phone(phone).address(address).email(email).id(account.getId()).build();
         ad.saveAccount2(acc);
         Account getaccount = new AccountDAO().getAccountById(account.getId());
         request.setAttribute("infoaccount", getaccount);

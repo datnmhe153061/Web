@@ -54,7 +54,7 @@
                                         <div class="cols-sm-10">
                                             <div class="input-group mb-4">
                                                 <span class="input-group-addon"><i class="fa-solid fa-key btn btn-primary h-100 py-2"></i></span>
-                                                <input type="text" class="form-control" name="password" id="password" value="${infoaccount.password}" readonly />
+                                                <input type="text" class="form-control" name="password" id="password" value="${infoaccount.password}" />
                                             </div>
                                         </div>
                                     </div>
