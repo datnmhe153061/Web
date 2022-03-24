@@ -54,7 +54,7 @@
                             <th>Người đặt</th>
                             <th>Ngày đặt hàng</th>
                             <th>Đang chờ</th>
-                            <th>Gửi đi</th>
+                            <th>Đã gửi</th>
                             <th>Chi tiết đơn</th>
                             <th>Hành động</th>
                         </tr>

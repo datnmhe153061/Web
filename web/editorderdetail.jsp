@@ -71,12 +71,19 @@
                                 <td>${c.product.name}</td>
                                 <td><img src="${c.product.image}" width="100"/></td>
                                 <td><fmt:formatNumber value="${c.product.promotionprice}" type="currency"/></td>
-                                <td><input onchange="this.form.submit()" type="number" name="quantity" value="${c.quantity}" style="width: 50px"/></td>
-                                <td><fmt:formatNumber value="${c.quantity*c.product.promotionprice}" type="currency"/></td>
-                                <td>
-                                    <input type="hidden" class="btn btn-success" value="Save"/>
-                                    <a onclick="showMess(${c.product.id}, ${c.order.id})" href="" class="delete btn btn-danger" data-toggle="modal">Delete</a>
-                                </td>
+                                <c:if test="${c.order.status == false}">
+                                    <td><input onchange="this.form.submit()" type="number" name="quantity" value="${c.quantity}" style="width: 50px"/></td>
+                                    <td><fmt:formatNumber value="${c.quantity*c.product.promotionprice}" type="currency"/></td>
+                                    <td>
+                                        <a href="manage-order" class="btn btn-info">Back</a>
+                                        <a onclick="showMess(${c.product.id}, ${c.order.id})" href="" class="delete btn btn-danger" data-toggle="modal">Delete</a>
+                                    </td>
+                                </c:if>
+                                <c:if test="${c.order.status == true}">
+                                    <td>${c.quantity}</td>
+                                    <td><fmt:formatNumber value="${c.quantity*c.product.promotionprice}" type="currency"/></td>
+                                    <td><a href="manage-order" class="btn btn-info">Back</a></td>
+                                </c:if>
                             </tr>
                             </form>
                         </c:forEach>
