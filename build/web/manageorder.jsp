@@ -55,6 +55,7 @@
                             <th>Ngày đặt hàng</th>
                             <th>Đang chờ</th>
                             <th>Gửi đi</th>
+                            <th>Chi tiết đơn</th>
                             <th>Hành động</th>
                         </tr>
                     </thead>
@@ -67,9 +68,10 @@
                                 <td>${a.createdate}</td>
                                 <td><input type="radio" name="status" value="1" ${a.status==false?"checked":""}/></td>
                                 <td><input type="radio" name="status" value="2" ${a.status==true?"checked":""}/></td>
+                                <td><a href="manage-admin-orderdetail?orderid=${a.id}" class="btn btn-info"> Xem chi tiết</a></td>
                                 <td>
-                                    <input type="submit" class="btn btn-success" value="Lưu"/>
-                                    <a onclick="showMess(${a.id})" class="text-danger btn btn-danger" data-toggle="modal">Hủy</a>
+                                    <input type="submit" class="btn btn-success" value="Save"/>
+                                    <a onclick="showMess(${a.id})" class="text-danger btn btn-danger" data-toggle="modal">Delete</a>
                                 </td>
                             </tr>
                         </form>    

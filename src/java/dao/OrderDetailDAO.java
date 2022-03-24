@@ -51,6 +51,34 @@ public class OrderDetailDAO extends BaseDAO<OrderDetail> {
             Logger.getLogger(OrderDetailDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public void deleteOrderDetailByOrderIdAndPid(int orderid , int productid) {
+        try {
+            String sql = "DELETE FROM [dbo].[OrderDetail]\n"
+                    + "      WHERE Order_id = ? AND Product_id = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, orderid);
+            statement.setInt(2, productid);
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDetailDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void updateQuantityOrderDetail( int orderid, int productid ,int quantity) {
+        try {
+            String sql = "UPDATE [OrderDetail]\n"
+                    + "SET \n"
+                    + "[Quantity] = ? \n"
+                    + "WHERE [Order_id] = ? AND [Product_id] = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, quantity);
+            statement.setInt(2, orderid);
+            statement.setInt(3, productid);
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(CartDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     public ArrayList<OrderDetail> getAllOrderDetail() {
         ArrayList<OrderDetail> list = new ArrayList<>();
@@ -88,7 +116,7 @@ public class OrderDetailDAO extends BaseDAO<OrderDetail> {
                 list.add(p);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OrderDetailDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
     }

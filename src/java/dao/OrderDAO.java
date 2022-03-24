@@ -144,7 +144,7 @@ public class OrderDAO extends BaseDAO<Order> {
             statement.setInt(1, id);
             statement.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(OrderDetailDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

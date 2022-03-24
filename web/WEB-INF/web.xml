@@ -116,6 +116,18 @@
         <servlet-name>UpdateAccountController</servlet-name>
         <servlet-class>controller.UpdateAccountController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ManageOrderDetail</servlet-name>
+        <servlet-class>controller.ManageOrderDetail</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManageDeleteOrderDetail</servlet-name>
+        <servlet-class>controller.ManageDeleteOrderDetail</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditOrderdetailcontroller</servlet-name>
+        <servlet-class>controller.EditOrderdetailcontroller</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/HomeController</url-pattern>
@@ -231,6 +243,18 @@
     <servlet-mapping>
         <servlet-name>UpdateAccountController</servlet-name>
         <url-pattern>/update-account</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageOrderDetail</servlet-name>
+        <url-pattern>/manage-admin-orderdetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageDeleteOrderDetail</servlet-name>
+        <url-pattern>/manage-delete-orderdetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditOrderdetailcontroller</servlet-name>
+        <url-pattern>/edit-orderdetail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

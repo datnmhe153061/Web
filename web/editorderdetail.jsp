@@ -1,6 +1,6 @@
 <%-- 
-    Document   : manageorder
-    Created on : Mar 18, 2022, 11:39:30 PM
+    Document   : editorderdetail
+    Created on : Mar 24, 2022, 9:27:46 AM
     Author     : Laptop88
 --%>
 
@@ -21,14 +21,14 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" rel="stylesheet"/>
     </head>
- 
+
     <body>
         <div class="container">
             <div class="table-wrapper">
                 <div class="table-title">
                     <div class="row">
                         <div class="col-md-10">
-                            <h2>Quản lí <b>đơn hàng</b></h2>
+                            <h2>Quản lí <b>chi tiết đơn hàng</b></h2>
                         </div>
                         <div class="col-md-2">
                             <c:if test="${sessionScope.account!=null}">
@@ -36,53 +36,54 @@
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <c:if test="${sessionScope.account.admin == true}">
                                         <li><a class="dropdown-item" href="manage-account">Quản lí tài khoản</a></li>
-                                    </c:if>
-                                    <c:if test="${sessionScope.account.admin == true || sessionScope.account.seller == true}">
+                                        </c:if>
+                                        <c:if test="${sessionScope.account.admin == true || sessionScope.account.seller == true}">
                                         <li><a class="dropdown-item" href="manage-product">Quản lí sản phẩm</a></li>
                                         <li><a class="dropdown-item" href="manage-order">Quản lí đơn hàng</a></li>
-                                    </c:if>
+                                        </c:if>
                                     <li><a class="dropdown-item" href="logout">Đăng Xuất</a></li>
                                 </ul>
                             </c:if>
                         </div>
                     </div>
                 </div>
-                <table class="table table-striped table-hover">
+                <table class="table text-center">
                     <thead>
-                        <tr>
-                            <th>Mã đơn hàng</th>
-                            <th>Người đặt</th>
-                            <th>Ngày đặt hàng</th>
-                            <th>Đang chờ</th>
-                            <th>Gửi đi</th>
-                            <th>Chi tiết đơn</th>
-                            <th>Hành động</th>
+                        <tr class="table-dark">
+                            <th scope="col">Mã đặt hàng</th>
+                            <th scope="col">Ngày đặt hàng</th>
+                            <th scope="col">Tên sản phẩm</th>
+                            <th scope="col">Hình ảnh</th>
+                            <th scope="col">Giá</th>
+                            <th scope="col">Số lượng</th>
+                            <th scope="col">Tổng giá</th>
+                            <th scope="col">Hành động</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach items="${list}" var="a">
-                        <form action="update-order" method="post">
+                        <c:forEach var="c" items="${listorderdetail}">
+                        <form action="edit-orderdetail" method="post">
                             <tr>
-                                <th><input  name="orderid" type="hidden" value="${a.id}">${a.id}</th>
-                                <td>${a.account.name}</td>
-                                <td>${a.createdate}</td>
-                                <td><input type="radio" name="status" value="1" ${a.status==false?"checked":""}/></td>
-                                <td><input type="radio" name="status" value="2" ${a.status==true?"checked":""}/></td>
-                                <td><a href="manage-admin-orderdetail?orderid=${a.id}" class="btn btn-info"> Xem chi tiết</a></td>
+                                <th scope="row">#${c.id}</th>
+                                <input type="hidden" name="productId" value="${c.product.id}" />
+                                <input type="hidden" name="orderId" value="${c.order.id}" />
+                                <td>${c.order.createdate}</td>
+                                <td>${c.product.name}</td>
+                                <td><img src="${c.product.image}" width="100"/></td>
+                                <td><fmt:formatNumber value="${c.product.promotionprice}" type="currency"/></td>
+                                <td><input onchange="this.form.submit()" type="number" name="quantity" value="${c.quantity}" style="width: 50px"/></td>
+                                <td><fmt:formatNumber value="${c.quantity*c.product.promotionprice}" type="currency"/></td>
                                 <td>
-                                    <input type="submit" class="btn btn-success" value="Save"/>
-                                    <a onclick="showMess(${a.id})" class="text-danger btn btn-danger" data-toggle="modal">Delete</a>
+                                    <input type="hidden" class="btn btn-success" value="Save"/>
+                                    <a onclick="showMess(${c.product.id}, ${c.order.id})" href="" class="delete btn btn-danger" data-toggle="modal">Delete</a>
                                 </td>
                             </tr>
-                        </form>    
+                            </form>
                         </c:forEach>
+
                     </tbody>
                 </table>
-                <div class="text-center">
-                    <ul class="pagination">
-                        <tag:TagHandler totalrecords="${newlist.size()}" url="manage-order" pageindex="${index}" item=""></tag:TagHandler>
-                    </ul>
-                </div>
+  
             </div>
             <a href="HomeController"><button type="button" class="btn btn-primary"><i class="fa-solid fa-angle-left"></i> Trở về trang chủ</button></a>
 
@@ -93,12 +94,13 @@
         <script src="js/scripts.js"></script>
         <script src="js/SmoothScroll.min.js"></script>
         <script>
-        function showMess(id){
-           var option = confirm('Bạn có chắc chắn xóa đơn hàng này không?');
+            function showMess(productid, orderid){
+           var option = confirm('Bạn có chắc chắn xóa sản phẩm này ra khỏi đơn hàng không?');
            if(option == true){
-               window.location.href = 'delete-order-mana?orderid='+id;
+               window.location.href = 'manage-delete-orderdetail?productId='+productid+'&orderId='+orderid;
            }
        }
-   </script>
+        </script>
     </body>
 </html>
+
